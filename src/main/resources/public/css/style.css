@@ -14,12 +14,15 @@
 /*    min-height: 30vh;*/
 /*}*/
 
-.user-list-body {
+.user-list-card {
     margin-top: 7px;
     margin-bottom: 7px;
-    margin-right: 3px;
-    margin-left: 3px;
-    height: 59vh;
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+.user-list-body{
+    height: 54vh;
 }
 
 .invite {
@@ -27,7 +30,11 @@
 }
 
 .tab-pane {
-    min-height: 51vh;
+    height: 51vh;
+}
+
+.scrollable {
+    overflow-y:scroll;
 }
 
 .invited {
