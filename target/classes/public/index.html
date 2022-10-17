@@ -10,7 +10,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="pt-5"></div>
+        <div class="row pt-5">
+        <div class="col-4 pt-5 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Login</h3>
+                    <form id="form-login">
+                        <div class="row pt-3 mx-1">
+                            <input type="text" class="form-control" placeholder="Username" id="login-username"/>
+                        </div>
+                        <div class="row pt-3 mx-1">
+                            <input type="text" class="form-control" placeholder="Password" id="login-password"/>
+                        </div>
+                        <div class="row pt-3 mx-1">
+                            <button class="btn btn-primary" id="btn-login">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="col-4 pt-5 mx-auto">
             <div class="card">
                 <div class="card-body">
@@ -18,6 +36,9 @@
                     <form id="form-signup">
                         <div class="row pt-3 mx-1">
                             <input type="text" class="form-control" placeholder="Username" id="in-username"/>
+                        </div>
+                        <div class="row pt-3 mx-1">
+                            <input type="password" class="form-control" placeholder="Password" id="in-password"/>
                         </div>
                         <div class="row pt-3 mx-1">
                             <input type="text" class="form-control" placeholder="Age" id="in-age"/>
@@ -71,6 +92,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
