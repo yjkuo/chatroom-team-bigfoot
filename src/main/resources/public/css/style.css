@@ -1,11 +1,25 @@
 .chatroom {
     min-height: 50vh;
-    color: green;
-    border-radius: .25rem;
+    /*color: green;*/
+    /*border-radius: .25rem;*/
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.chatroom-card {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
-.user-list {
-    min-height: 30vh;
+/*.user-list {*/
+/*    min-height: 30vh;*/
+/*}*/
+
+.user-list-body {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-right: 3px;
+    margin-left: 3px;
+    height: 59vh;
 }
 
 .invite {
@@ -13,8 +27,16 @@
 }
 
 .tab-pane {
-    min-height: 50vh;
+    min-height: 51vh;
 }
 
+.invited {
+    height: 20vh;
+    overflow-y:scroll;
+}
+
+body {
+    background: whitesmoke !important;
+}
 
 

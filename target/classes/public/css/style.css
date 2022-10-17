@@ -1,0 +1,20 @@
+.chatroom {
+    min-height: 50vh;
+    color: green;
+    border-radius: .25rem;
+}
+
+.user-list {
+    min-height: 30vh;
+}
+
+.invite {
+    min-height: 10vh;
+}
+
+.tab-pane {
+    min-height: 50vh;
+}
+
+
+
