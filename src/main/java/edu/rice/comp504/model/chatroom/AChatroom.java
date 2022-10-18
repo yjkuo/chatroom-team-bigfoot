@@ -3,33 +3,36 @@ package edu.rice.comp504.model.chatroom;
 import edu.rice.comp504.model.message.AMessage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class AChatroom {
     private String roomName;
-    private int id;
     private String type;
     private String admin;
+    private int size;
     private ArrayList<String> users;
     private ArrayList<String> bans;
     private Map<Integer, AMessage> messages;
+    private Map<String, Date> userJoinedTime;
 
-    public AChatroom(int id, String name, String type) {
+    public AChatroom(String name, String type, int size) {
         this.roomName = name;
-        this.id = id;
         this.type = type;
+        this.size = size;
         this.users = new ArrayList<>();
         this.bans = new ArrayList<>();
         this.messages = new ConcurrentHashMap<>();
+        this.userJoinedTime = new ConcurrentHashMap<>();
     }
 
     public String getRoomName() {
         return roomName;
     }
 
-    public int getId() {
-        return id;
+    public int getSize() {
+        return size;
     }
 
     public String getType() {
@@ -70,8 +73,9 @@ public abstract class AChatroom {
         }
     }
 
-    public Map<Integer, AMessage> getMessages() {
-        return messages;
+    public Map<Integer, AMessage> getMessages(String username) {
+        //TODO filter message based on specific user's joined time
+        return null;
     }
 
     public void addMessage() {
