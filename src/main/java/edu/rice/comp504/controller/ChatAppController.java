@@ -71,12 +71,8 @@ public class ChatAppController {
             return gson.toJson("get messages");
         });
 
-        post("/chatroom/sendNormalMessage", (request, response) -> {
-            return gson.toJson("send Normal message");
-        });
-
-        post("/chatroom/sendDirectMessage", (request, response) -> {
-            return gson.toJson("send Direct message");
+        post("/chatroom/sendMessage", (request, response) -> {
+            return gson.toJson("send message");
         });
 
         post("/chatroom/editMessage", (request, response) -> {

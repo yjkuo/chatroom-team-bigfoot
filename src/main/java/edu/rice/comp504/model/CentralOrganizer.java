@@ -51,7 +51,7 @@ public class CentralOrganizer implements ICentralOrganizer{
     }
 
     @Override
-    public AChatroom getChatRoom(int chatroomID) {
+    public AChatroom getChatRoom(String chatroomName) {
         return null;
     }
 
@@ -71,12 +71,12 @@ public class CentralOrganizer implements ICentralOrganizer{
     }
 
     @Override
-    public ArrayList<String> getChatRoomUsers(String chatroomName) {
+    public ArrayList<AChatroom> getChatRoomForUser(String username) {
         return null;
     }
 
     @Override
-    public Map<String, User> getAllUsers() {
+    public List<String> getAllUsers(String chatroomName) {
         return null;
     }
 
@@ -112,11 +112,6 @@ public class CentralOrganizer implements ICentralOrganizer{
 
     @Override
     public String setAdmin(String chatroomName, String username) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<String> getAllRooms() {
         return null;
     }
 

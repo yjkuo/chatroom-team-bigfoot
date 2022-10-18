@@ -1,12 +1,9 @@
 package edu.rice.comp504.adapter;
 
 import edu.rice.comp504.model.CentralOrganizer;
-import edu.rice.comp504.model.MsgToClientSender;
-import edu.rice.comp504.model.UserDB;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 /**
