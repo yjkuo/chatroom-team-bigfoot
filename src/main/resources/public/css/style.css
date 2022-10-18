@@ -1,9 +1,10 @@
 .chatroom {
-    min-height: 50vh;
+    height: 50vh;
     /*color: green;*/
     /*border-radius: .25rem;*/
     margin-left: 0px;
     margin-right: 0px;
+    overflow-y:scroll;
 }
 .chatroom-card {
     margin-left: 0px;
