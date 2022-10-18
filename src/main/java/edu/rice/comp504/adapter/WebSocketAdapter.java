@@ -1,5 +1,6 @@
 package edu.rice.comp504.adapter;
 
+import edu.rice.comp504.model.CentralOrganizer;
 import edu.rice.comp504.model.MsgToClientSender;
 import edu.rice.comp504.model.UserDB;
 import org.eclipse.jetty.websocket.api.Session;
@@ -13,6 +14,7 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
  */
 @WebSocket
 public class WebSocketAdapter {
+    CentralOrganizer co = CentralOrganizer.makeOrganizer();
 
     /**
      * Open user's session.
@@ -20,8 +22,7 @@ public class WebSocketAdapter {
      */
     @OnWebSocketConnect
     public void onConnect(Session session) {
-        String username = "User" + UserDB.genNextUserId();
-        UserDB.addSessionUser(session, username);
+        co.online("", session);
     }
 
     /**
@@ -30,17 +31,6 @@ public class WebSocketAdapter {
      */
     @OnWebSocketClose
     public void onClose(Session session, int statusCode, String reason) {
-        UserDB.removeUser(session);
-    }
-
-    /**
-     * Send a message.
-     * @param session  The session user sending the message.
-     * @param message The message to be sent.
-     */
-    @OnWebSocketMessage
-    public void onMessage(Session session, String message) {
-        // TODO: broadcast the message to all clients
-        MsgToClientSender.broadcastMessage(UserDB.getUser(session), message);
+        co.offline("", session);
     }
 }

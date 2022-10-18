@@ -1,8 +1,9 @@
-package edu.rice.comp504;
+package edu.rice.comp504.model;
 
 import edu.rice.comp504.model.message.AMessage;
 import edu.rice.comp504.model.chatroom.AChatroom;
 import edu.rice.comp504.model.user.User;
+import org.eclipse.jetty.websocket.api.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * The class to maintain and organize the state of chat app.
  */
 public interface ICentralOrganizer {
-    Map<String, User> userList = new ConcurrentHashMap<>();
-    Map<String, AChatroom> chatroomList = new ConcurrentHashMap<>();
-
     User register(String username, String pwd, int age, String school, String interests);
 
     User login(String username, String pwd);
+
+    void online(String username, Session userSession);
+
+    void offline(String username, Session userSession);
 
     AChatroom getChatRoom(int chatroomID);
 
