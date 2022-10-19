@@ -3,8 +3,12 @@ package edu.rice.comp504.model;
 public class MessageStore implements IMessageStore{
     private static MessageStore ONLY;
 
-    private MessageStore(){};
+    private MessageStore(){}
 
+    /**
+     * Create the message singleton store.
+     * @return message singleton store
+     */
     public static MessageStore makeStore() {
         if (ONLY == null) {
             ONLY = new MessageStore();

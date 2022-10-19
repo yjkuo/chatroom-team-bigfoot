@@ -20,8 +20,12 @@ public class UserStore implements IUserStore{
 
     private static UserStore ONLY;
 
-    private UserStore(){};
+    private UserStore(){}
 
+    /**
+     * Create the singleton user store.
+     * @return user singleton store
+     */
     public static UserStore makeStore() {
         if (ONLY == null) {
             ONLY = new UserStore();
