@@ -1,6 +1,6 @@
 'use strict';
 
-const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
+// const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
 
 /**
@@ -8,8 +8,20 @@ const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.por
  */
 window.onload = function() {
 
-    webSocket.onclose = () => alert("WebSocket connection closed");
-    webSocket.onmessage = (msg) => updateChatRoom(msg);
+    // webSocket.onclose = () => alert("WebSocket connection closed");
+    // webSocket.onmessage = (msg) => updateChatRoom(msg);
+
+    $('#form-login').submit(function(e) {
+        e.preventDefault();
+        console.log("hello");
+        window.location.href = "/main.html";
+    })
+
+    $('#form-signup').submit(function(e) {
+        e.preventDefault();
+        window.location.href = "/main.html";
+    })
+
 
     $("#btn-msg").click(() => sendMessage($("#message").val()));
     $(".emoji-btn").click(function() {
@@ -41,12 +53,12 @@ function sendMsg(msg) {
  * Send a message to the server.
  * @param msg  The message to send to the server.
  */
-function sendMessage(msg) {
-    if (msg !== "") {
-        webSocket.send(msg);
-        $("#message").val("");
-    }
-}
+// function sendMessage(msg) {
+//     if (msg !== "") {
+//         webSocket.send(msg);
+//         $("#message").val("");
+//     }
+// }
 
 function signUp() {
     console.log("sign_up");
@@ -61,8 +73,7 @@ function addEmoji() {
  * Update the chat room with a message.
  * @param message  The message to update the chat room with.
  */
-function updateChatRoom(message) {
-    // TODO: convert the data to JSON and use .append(text) on a html element to append the message to the chat area
-    let data = JSON.parse(message.data);
-    $("#chatArea").append(data["userMessage"]);
-}
+// function updateChatRoom(message) {
+//     let data = JSON.parse(message.data);
+//     $("#chatArea").append(data["userMessage"]);
+// }

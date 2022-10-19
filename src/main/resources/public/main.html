@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>Main</title>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
     <!-- CSS only -->
@@ -26,6 +26,7 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active scrollable" id="nav-join" role="tabpanel" aria-labelledby="nav-join-tab">
+                                    <div class="alert alert-danger mt-3" role="alert">Room Is Full</div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             Public Room 1
@@ -200,6 +201,9 @@
             </div>
             <div class="col-2 pt-3 pe-4 mx-auto">
                 <div class="row">
+                <button class="btn btn-danger" id="btn-logout">Logout</button>
+                </div>
+                <div class="row pt-2">
                     <div class="card">
                         <div class="user-list-card">
                             <h4 class="card-title text-center">List of Users</h4>
@@ -234,6 +238,9 @@
                 </div>
                 <div class="row pt-2">
                     <button class="btn btn-danger" id="btn-leave">Leave Room</button>
+                </div>
+                <div class="row pt-2">
+                    <a href="mainNotAdmin.html">Non Admin View</a>
                 </div>
             </div>
         </div>

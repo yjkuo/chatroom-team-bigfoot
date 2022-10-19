@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.11.2">
-<file name="C:\Users\mafli\504\ex7-anandgidz\src\main\java\edu\rice\comp504\adapter\WebSocketAdapter.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\adapter\WebSocketAdapter.java">
 </file>
-<file name="C:\Users\mafli\504\ex7-anandgidz\src\main\java\edu\rice\comp504\controller\ChatAppController.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\controller\ChatAppController.java">
 </file>
-<file name="C:\Users\mafli\504\ex7-anandgidz\src\main\java\edu\rice\comp504\model\MsgToClientSender.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\MsgToClientSender.java">
 </file>
-<file name="C:\Users\mafli\504\ex7-anandgidz\src\main\java\edu\rice\comp504\model\UserDB.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\UserDB.java">
 </file>
 </checkstyle>
