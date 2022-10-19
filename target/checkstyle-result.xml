@@ -4,23 +4,25 @@
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\controller\ChatAppController.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\CentralOrganizer.java">
-</file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\AChatroom.java">
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\IChatroomFactory.java">
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\NullChatroom.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IChatroomCmd.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ChatroomStore.java">
+<error line="19" severity="error" message="&apos;;&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="21" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\ICmdFactory.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\DispatcherAdapter.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IMessageCmd.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IChatroomStore.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IUserCmd.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IDispatcherAdapter.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ICentralOrganizer.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IMessageStore.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IUserStore.java">
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\AMessage.java">
 </file>
@@ -32,6 +34,10 @@
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NullMessage.java">
 </file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\MessageStore.java">
+<error line="6" severity="error" message="&apos;;&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="8" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\AUser.java">
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\IUserFactory.java">
@@ -39,5 +45,9 @@
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\NullUser.java">
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\User.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\UserStore.java">
+<error line="23" severity="error" message="&apos;;&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="25" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
 </file>
 </checkstyle>

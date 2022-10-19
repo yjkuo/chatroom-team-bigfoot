@@ -25,8 +25,9 @@
                                 <button class="nav-link" id="nav-chatrooms-tab" data-bs-toggle="tab" data-bs-target="#nav-chatrooms" type="button" role="tab" aria-controls="nav-chatrooms" aria-selected="false">Chat Rooms</button>
                             </div>
                             <div class="tab-content">
-                                <div class="tab-pane fade show active scrollable" id="nav-join" role="tabpanel" aria-labelledby="nav-join-tab">
+                                <div class="tab-pane fade show active" id="nav-join" role="tabpanel" aria-labelledby="nav-join-tab">
                                     <div class="alert alert-danger mt-3" role="alert">Room Is Full</div>
+                                    <div class="scrollable">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             Public Room 1
@@ -41,6 +42,7 @@
                                             <button class="btn btn-success btn-sm float-end">Join</button>
                                         </li>
                                     </ul>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
                                     <div class="alert alert-danger mt-3" role="alert">Room name taken</div>
@@ -69,30 +71,33 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade scrollable" id="nav-chatrooms" role="tabpanel" aria-labelledby="nav-chatrooms-tab">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            Owl Games
-                                            <div class="float-end">
-                                                <span class="pe-1" style="font-size:10.0pt">Members : 3/15</span>
-                                                <button class="btn btn-success btn-sm float-end" hidden>Open</button>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Joined Room 2
-                                            <div class="float-end">
-                                                <span class="pe-1" style="font-size:10.0pt">Members : 5/20</span>
-                                                <button class="btn btn-success btn-sm float-end">Open</button>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Joined Room 3
-                                            <div class="float-end">
-                                                <span class="pe-1" style="font-size:10.0pt">Members : 15/25</span>
-                                                <button class="btn btn-success btn-sm float-end">Open</button>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="tab-pane fade" id="nav-chatrooms" role="tabpanel" aria-labelledby="nav-chatrooms-tab">
+                                    <button class="btn btn-danger w-100 mt-2 mb-2" id="btn-leave-all">Leave All Rooms</button>
+                                    <div class="scrollable">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                Owl Games
+                                                <div class="float-end">
+                                                    <span class="pe-1" style="font-size:10.0pt">Members : 3/15</span>
+                                                    <button class="btn btn-success btn-sm float-end" hidden>Open</button>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                Joined Room 2
+                                                <div class="float-end">
+                                                    <span class="pe-1" style="font-size:10.0pt">Members : 5/20</span>
+                                                    <button class="btn btn-success btn-sm float-end">Open</button>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                Joined Room 3
+                                                <div class="float-end">
+                                                    <span class="pe-1" style="font-size:10.0pt">Members : 15/25</span>
+                                                    <button class="btn btn-success btn-sm float-end">Open</button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -229,6 +234,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title text-center">Invite User</h5>
+                            <div class="alert alert-danger mt-3" role="alert">Room Is Full</div>
                             <div class="invite">
                                 <input type="text" class="form-control" placeholder="Username"/>
                                 <button class="btn btn-primary w-100 mt-2" id="btn-invite">Invite</button>
