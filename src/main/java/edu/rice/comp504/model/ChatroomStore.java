@@ -16,8 +16,12 @@ public class ChatroomStore implements IChatroomStore{
     private Map<String, AChatroom> chatroomList = new ConcurrentHashMap<>();
     private static ChatroomStore ONLY;
 
-    private ChatroomStore(){};
+    private ChatroomStore(){}
 
+    /**
+     * Create a chatroom singleton store.
+     * @return the chatroom singleton store
+     */
     public static ChatroomStore makeStore() {
         if (ONLY == null) {
             ONLY = new ChatroomStore();

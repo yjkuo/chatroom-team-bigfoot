@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.11.2">
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\adapter\WebSocketAdapter.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/adapter/WebSocketAdapter.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\controller\ChatAppController.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/controller/ChatAppController.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\CentralOrganizer.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/MessageStore.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\AChatroom.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IUserStore.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\IChatroomFactory.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IMessageStore.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\NullChatroom.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IDispatcherAdapter.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IChatroomCmd.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/DirectMessage.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\ICmdFactory.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/IMessageFactory.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IMessageCmd.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/AMessage.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IUserCmd.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/NormalMessage.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ICentralOrganizer.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/NullMessage.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\AMessage.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/NullUser.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\DirectMessage.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/User.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\IMessageFactory.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/IUserFactory.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NormalMessage.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/AUser.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NullMessage.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/UserStore.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\AUser.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/ChatroomStore.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\IUserFactory.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/chatroom/NullChatroom.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\NullUser.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/chatroom/IChatroomFactory.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\User.java">
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/chatroom/AChatroom.java">
+</file>
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IChatroomStore.java">
+</file>
+<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/DispatcherAdapter.java">
 </file>
 </checkstyle>
