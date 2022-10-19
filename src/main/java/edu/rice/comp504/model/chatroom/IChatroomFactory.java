@@ -16,7 +16,7 @@ public interface IChatroomFactory {
      * @param name Unique name of the chatroom
      * @param type Type of the chatroom (public or private)
      * @param size Size of the chatroom
-     * @return
+     * @return The created chatroom
      */
     AChatroom makeChatRoom(String name, String type, int size);
 }

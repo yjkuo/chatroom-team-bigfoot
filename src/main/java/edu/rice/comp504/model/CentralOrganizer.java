@@ -23,6 +23,9 @@ public class CentralOrganizer implements ICentralOrganizer{
         userSessionMap = new ConcurrentHashMap<>();
     }
 
+    /**
+     Get Central Organizer singleton.
+     */
     public static CentralOrganizer makeOrganizer() {
         if (ONLY == null) {
             ONLY = new CentralOrganizer();

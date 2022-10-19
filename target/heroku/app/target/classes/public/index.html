@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <title>Chat App</title>
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/view2.js"></script>
+    <script src="js/view.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="./css/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <div class="row pt-5">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+                <div class="ms-5">
+                    <h4>Bigfoot ChatApp</h4>
+                </div>
+            </nav>
+        </div>
+        <div class="row pt-2">
         <div class="col-4 pt-5 mx-auto">
             <div class="card">
                 <div class="card-body">
@@ -24,7 +31,7 @@
                             <input type="text" class="form-control" placeholder="Password" id="login-password"/>
                         </div>
                         <div class="row pt-3 mx-1">
-                            <button class="btn btn-primary" id="btn-login">Submit</button>
+                            <button class="btn btn-secondary" id="btn-login">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -90,7 +97,7 @@
                             </div>
                         </div>
                         <div class="row pt-3 mx-1">
-                            <button class="btn btn-primary" id="btn-signup">Submit</button>
+                            <button class="btn btn-secondary" id="btn-signup">Submit</button>
                         </div>
                     </form>
                 </div>

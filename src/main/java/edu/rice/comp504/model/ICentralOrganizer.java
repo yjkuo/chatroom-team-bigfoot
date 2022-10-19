@@ -22,7 +22,6 @@ public interface ICentralOrganizer {
      * @param age Integer age
      * @param school String school name
      * @param interests String interests (combined)
-     * @return
      */
     User register(String username, String pwd, int age, String school, String interests);
 
@@ -30,7 +29,6 @@ public interface ICentralOrganizer {
      * Log in an existing user.
      * @param username String username
      * @param pwd String password
-     * @return
      */
     User login(String username, String pwd);
 
@@ -50,8 +48,7 @@ public interface ICentralOrganizer {
 
     /**
      * Return the chatroom with that specific name.
-     * @param chatroomName
-     * @return
+     * @param chatroomName The chatroom name
      */
     AChatroom getChatRoom(String chatroomName);
 
@@ -61,7 +58,6 @@ public interface ICentralOrganizer {
      * @param chatroomName String unique chatroomName
      * @param type String type
      * @param size Int size of the chatroom
-     * @return
      */
     AChatroom createChatRoom(String username, String chatroomName, String type, int size);
 
@@ -69,7 +65,6 @@ public interface ICentralOrganizer {
      * Join the chatroom with unique chat room name.
      * @param username String username
      * @param chatroomName String chat room name
-     * @return
      */
     AChatroom joinChatRoom(String username, String chatroomName);
 
@@ -77,7 +72,6 @@ public interface ICentralOrganizer {
      * Invite a user to join the chat room.
      * @param username String invited username
      * @param chatroomName String chat room name
-     * @return
      */
     AChatroom inviteToJoin(String username, String chatroomName);
 
@@ -160,7 +154,6 @@ public interface ICentralOrganizer {
      * Get the messages based on specific user in a chat room.
      * @param username String username of the user.
      * @param chatroomName String chat room name.
-     * @return
      */
     List<AMessage> getMessageForUser(String username, String chatroomName);
 

@@ -4,8 +4,40 @@
 </file>
 <file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\controller\ChatAppController.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\MsgToClientSender.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\CentralOrganizer.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\UserDB.java">
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\AChatroom.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\IChatroomFactory.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\NullChatroom.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IChatroomCmd.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\ICmdFactory.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IMessageCmd.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IUserCmd.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ICentralOrganizer.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\AMessage.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\DirectMessage.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\IMessageFactory.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NormalMessage.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NullMessage.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\AUser.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\IUserFactory.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\NullUser.java">
+</file>
+<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\User.java">
 </file>
 </checkstyle>

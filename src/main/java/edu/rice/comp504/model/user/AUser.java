@@ -64,7 +64,7 @@ public abstract class AUser {
     }
 
     /**
-     * Return the school of the user
+     * Return the school of the user.
      * @return school name
      */
     public String getSchool() {

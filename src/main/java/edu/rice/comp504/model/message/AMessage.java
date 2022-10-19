@@ -21,7 +21,7 @@ public abstract class AMessage {
      * @param sender sender of the message
      * @param type type of the message (normal or direct)
      */
-    public AMessage(int messageID, String chatRoomName, String content, String sender, String type){
+    public AMessage(int messageID, String chatRoomName, String content, String sender, String type) {
         this.messageID = messageID;
         this.chatRoomName = chatRoomName;
         this.content = content;
@@ -31,24 +31,24 @@ public abstract class AMessage {
     }
 
     /**
-     * Return the ID of the message
-     * @return ID of the message
+     * Return the ID of the message.
+     * @return ID of the message.
      */
     public int getMessageID() {
         return messageID;
     }
 
     /**
-     * Return the type of the message
-     * @return type of the message
+     * Return the type of the message.
+     * @return type of the message.
      */
     public String getType() {
         return type;
     }
 
     /**
-     * Return the timestamp of the message (sent or last edited)
-     * @return timestamp of the message
+     * Return the timestamp of the message (sent or last edited).
+     * @return timestamp of the message.
      */
     public Date getTimestamp() {
         return timestamp;

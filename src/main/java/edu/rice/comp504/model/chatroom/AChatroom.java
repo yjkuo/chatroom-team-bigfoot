@@ -72,7 +72,7 @@ public abstract class AChatroom {
 
     /**
      * Set the unique admin of chatroom.
-     * @param admin
+     * @param admin the admin user.
      */
     public void setAdmin(String admin) {
         this.admin = admin;
