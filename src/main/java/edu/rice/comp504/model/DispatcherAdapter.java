@@ -10,25 +10,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CentralOrganizer implements ICentralOrganizer{
-    private Map<String, User> userList;
-    private Map<String, Session> userSessionMap;
-    private Map<String, AChatroom> chatroomList;
+public class DispatcherAdapter implements IDispatcherAdapter {
+    ChatroomStore cs ;
+    MessageStore ms;
+    UserStore us;
 
-    private static CentralOrganizer ONLY;
+    private static DispatcherAdapter ONLY;
 
-    private CentralOrganizer() {
-        userList = new ConcurrentHashMap<>();
-        chatroomList = new ConcurrentHashMap<>();
-        userSessionMap = new ConcurrentHashMap<>();
+    private DispatcherAdapter() {
+        cs = ChatroomStore.makeStore();
+        ms = MessageStore.makeStore();
+        us = UserStore.makeStore();
     }
 
     /**
      Get Central Organizer singleton.
      */
-    public static CentralOrganizer makeOrganizer() {
+    public static DispatcherAdapter makeDispatcher() {
         if (ONLY == null) {
-            ONLY = new CentralOrganizer();
+            ONLY = new DispatcherAdapter();
         }
         return ONLY;
     }
@@ -84,7 +84,7 @@ public class CentralOrganizer implements ICentralOrganizer{
     }
 
     @Override
-    public Map<String, AChatroom> getAllChatrooms() {
+    public Map<String, AChatroom> getAllPublicChatRooms() {
         return null;
     }
 

@@ -1,6 +1,7 @@
 package edu.rice.comp504.adapter;
 
-import edu.rice.comp504.model.CentralOrganizer;
+import edu.rice.comp504.model.DispatcherAdapter;
+import edu.rice.comp504.model.DispatcherAdapter;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
@@ -11,7 +12,7 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
  */
 @WebSocket
 public class WebSocketAdapter {
-    CentralOrganizer co = CentralOrganizer.makeOrganizer();
+    DispatcherAdapter co = DispatcherAdapter.makeDispatcher();
 
     /**
      * Open user's session.

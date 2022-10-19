@@ -8,12 +8,11 @@ import org.eclipse.jetty.websocket.api.Session;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The class to maintain and organize the state of chat app.
  */
-public interface ICentralOrganizer {
+public interface IDispatcherAdapter {
 
     /**
      * Register the new user.
@@ -22,6 +21,7 @@ public interface ICentralOrganizer {
      * @param age Integer age
      * @param school String school name
      * @param interests String interests (combined)
+     * @return the registered user or null
      */
     User register(String username, String pwd, int age, String school, String interests);
 
@@ -29,6 +29,7 @@ public interface ICentralOrganizer {
      * Log in an existing user.
      * @param username String username
      * @param pwd String password
+     * @return the logged user or null
      */
     User login(String username, String pwd);
 
@@ -49,6 +50,8 @@ public interface ICentralOrganizer {
     /**
      * Return the chatroom with that specific name.
      * @param chatroomName The chatroom name
+     * @param chatroomName unique chatroom name
+     * @return the chatroom or null
      */
     AChatroom getChatRoom(String chatroomName);
 
@@ -58,6 +61,7 @@ public interface ICentralOrganizer {
      * @param chatroomName String unique chatroomName
      * @param type String type
      * @param size Int size of the chatroom
+     * @return the chatroom or null
      */
     AChatroom createChatRoom(String username, String chatroomName, String type, int size);
 
@@ -65,6 +69,7 @@ public interface ICentralOrganizer {
      * Join the chatroom with unique chat room name.
      * @param username String username
      * @param chatroomName String chat room name
+     * @return the chatroom or null
      */
     AChatroom joinChatRoom(String username, String chatroomName);
 
@@ -72,6 +77,7 @@ public interface ICentralOrganizer {
      * Invite a user to join the chat room.
      * @param username String invited username
      * @param chatroomName String chat room name
+     * @return the chatroom or null
      */
     AChatroom inviteToJoin(String username, String chatroomName);
 
@@ -89,10 +95,10 @@ public interface ICentralOrganizer {
     List<String> getAllUsers(String chatroomName);
 
     /**
-     * Return a list of all chat rooms.
-     * @return List of chatrooms.
+     * Return a list of all public chat rooms.
+     * @return List of public chatrooms.
      */
-    Map<String, AChatroom> getAllChatrooms();
+    Map<String, AChatroom> getAllPublicChatRooms();
 
     /**
      * Delete a user from the chat room.
