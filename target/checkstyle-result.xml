@@ -1,103 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="6.11.2">
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/adapter/WebSocketAdapter.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\adapter\WebSocketAdapter.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/controller/ChatAppController.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\controller\ChatAppController.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\AChatroom.java">
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\CentralOrganizer.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\AChatroom.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\AChatroom.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/MessageStore.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\IChatroomFactory.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IUserStore.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\chatroom\NullChatroom.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IMessageStore.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ChatroomStore.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IDispatcherAdapter.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\DispatcherAdapter.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ChatroomStore.java">
-<error line="19" severity="error" message="&apos;;&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
-<error line="21" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IChatroomCmd.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/DirectMessage.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IChatroomStore.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\DispatcherAdapter.java">
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\ICmdFactory.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/IMessageFactory.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IDispatcherAdapter.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IChatroomStore.java">
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IMessageCmd.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/AMessage.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IMessageStore.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IDispatcherAdapter.java">
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\cmd\IUserCmd.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/NormalMessage.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IUserStore.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IMessageStore.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\AMessage.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\IUserStore.java">
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\ICentralOrganizer.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/message/NullMessage.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\DirectMessage.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/NullUser.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\IMessageFactory.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/User.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NormalMessage.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/IUserFactory.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\message\NullMessage.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/user/AUser.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\MessageStore.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/UserStore.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\AUser.java">
 </file>
-<<<<<<< HEAD
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\MessageStore.java">
-<error line="6" severity="error" message="&apos;;&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
-<error line="8" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\IUserFactory.java">
 </file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\AUser.java">
-||||||| fcac1ea
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\AUser.java">
-=======
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/ChatroomStore.java">
->>>>>>> 2a18ac73fe2694aca7d541439f6b90b3bd52a2e7
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\NullUser.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/chatroom/NullChatroom.java">
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\user\User.java">
 </file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/chatroom/IChatroomFactory.java">
-</file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/chatroom/AChatroom.java">
-</file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/IChatroomStore.java">
-</file>
-<file name="/Users/frankfeng/Desktop/Academic/Rice/COMP504/PA/hw5/chat-api-team-bigfoot/src/main/java/edu/rice/comp504/model/DispatcherAdapter.java">
-</file>
-<file name="C:\Users\mafli\504\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\UserStore.java">
-<error line="23" severity="error" message="&apos;;&apos; should be separated from previous statement." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
-<error line="25" column="5" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<file name="C:\Users\mafli\504\test\chat-api-team-bigfoot\src\main\java\edu\rice\comp504\model\UserStore.java">
 </file>
 </checkstyle>

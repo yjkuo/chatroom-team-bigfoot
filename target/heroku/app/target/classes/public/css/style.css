@@ -23,7 +23,7 @@
 }
 
 .user-list-body{
-    height: 50vh;
+    height: 40vh;
 }
 
 .invite {
@@ -46,5 +46,32 @@
 body {
     background: whitesmoke !important;
 }
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    overflow-y: scroll
+}
+
+.chat-message-left,
+.chat-message-right {
+    display: flex;
+    flex-shrink: 0
+}
+
+.chat-message-left {
+    margin-right: auto
+}
+
+.chat-message-right {
+    flex-direction: row-reverse;
+    margin-left: auto;
+}
+
+.chat-message-right > div{
+    background-color: #8be08f;
+}
+
 
 
