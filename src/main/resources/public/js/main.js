@@ -72,7 +72,7 @@ function sendMsg(msg) {
     `;
         $(".chat-messages").append(msgHtml);
         $("#txt-message").val(''); 
-        let chat = $('.chat-messages');
+        let chat = $('.chatroom');
         chat.scrollTop(chat.prop("scrollHeight"));
     }
 }
