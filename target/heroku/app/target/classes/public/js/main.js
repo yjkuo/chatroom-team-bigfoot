@@ -22,6 +22,8 @@ window.onload = function() {
         window.location.href = "/main.html";
     })
 
+    $(".chatroom").scrollTop($(".chatroom")[0].scrollHeight);
+
 
     $("#btn-msg").click(() => sendMessage($("#message").val()));
     $(".emoji-btn").click(function() {
