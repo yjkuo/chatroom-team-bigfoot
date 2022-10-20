@@ -30,23 +30,48 @@ window.onload = function() {
         $("#txt-message").focus();
     });
     $("#btn-send").click(() => sendMsg($("#txt-message").val()));
+
+    $('.lst-rooms').on('click', function() {
+        let $this = $(this); 
+        $("#room-name").html($this.data('alias'));
+    })
 };
 
 function sendMsg(msg) {
     if (msg != '') {
+        // check if msg have url
+        let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+        if (msg.match(urlRegex)) {
+            let url = msg.match(urlRegex);
+            msg = msg.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
+        }
+
         let sendto = $('#send-to-list').find(":selected").val();
         var msgHtml = `
-                                    <li class="list-group-item">
-                                    From Me to ${sendto} : ${msg}
-                                    <div class="float-end">
-                                        <span style="font-size:10.0pt">Sending</span>
-                                        <button class="btn btn-warning btn-sm">Edit</button>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <div class="container pb-3">
+                            <div class="chat-message-right">
+                                <div class="flex-shrink-1 rounded py-2 px-3 mr-3"> 
+                                    <div class="d-flex flex-row">
+                                        <div class="d-flex flex-column px-2">           
+                                            <div class="fw-bold mb-1">You to ${sendto}</div>
+                                            ${msg}
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div><button class="btn btn-warning btn-sm w-100">Edit</button></div>
+                                            <div><button class="btn btn-danger btn-sm w-100">Del</button></div>
+                                        </div> 
                                     </div>
-                                </li>
+                                </div>                                                    
+                            </div>
+                            <div class="float-end">
+                                <span style="font-size:10.0pt">Delivered</span>
+                            </div>   
+                        </div>
     `;
-        $("#lst-messages").append(msgHtml);
-        $("#txt-message").val('');
+        $(".chat-messages").append(msgHtml);
+        $("#txt-message").val(''); 
+        let chat = $('.chat-messages');
+        chat.scrollTop(chat.prop("scrollHeight"));
     }
 }
 /**
