@@ -39,6 +39,6 @@ function logIn() {
         password: $('#login-password').val()
     };
     $.post("/login", payload, function(data) {
-        if (username !== "") window.location.href = "/main.html";
+        if (data.username !== "") window.location.href = "/main.html";
     }, "json");
 }
