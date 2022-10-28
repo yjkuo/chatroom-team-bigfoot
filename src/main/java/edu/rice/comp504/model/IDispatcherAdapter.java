@@ -2,6 +2,7 @@ package edu.rice.comp504.model;
 
 import edu.rice.comp504.model.message.AMessage;
 import edu.rice.comp504.model.chatroom.AChatroom;
+import edu.rice.comp504.model.user.AUser;
 import edu.rice.comp504.model.user.User;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -23,7 +24,7 @@ public interface IDispatcherAdapter {
      * @param interests String interests (combined)
      * @return the registered user or null
      */
-    User register(String username, String pwd, int age, String school, String interests);
+    AUser register(String username, String pwd, int age, String school, String interests);
 
     /**
      * Log in an existing user.
@@ -31,7 +32,7 @@ public interface IDispatcherAdapter {
      * @param pwd String password
      * @return the logged user or null
      */
-    User login(String username, String pwd);
+    AUser login(String username, String pwd);
 
     /**
      * Mark a user as online and store its unique session.

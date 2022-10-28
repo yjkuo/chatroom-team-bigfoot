@@ -14,12 +14,13 @@ window.onload = function() {
     $('#form-login').submit(function(e) {
         e.preventDefault();
         console.log("hello");
-        window.location.href = "/main.html";
+        // window.location.href = "/main.html";
     })
 
     $('#form-signup').submit(function(e) {
         e.preventDefault();
-        window.location.href = "/main.html";
+        signUp();
+        // window.location.href = "/main.html";
     })
 
     $(".chatroom").scrollTop($(".chatroom")[0].scrollHeight);
@@ -89,6 +90,15 @@ function sendMsg(msg) {
 
 function signUp() {
     console.log("sign_up");
+    console.log($("input[type='checkbox']").serialize());
+    let payload = {
+        username: $('#in-username').val(),
+        password: $('#in-password').val(),
+        age: $('#in-age').val(),
+        school: $('#in-school').val(),
+        interests: "fas"
+    }
+    $.post("/register", payload);
 }
 
 function addEmoji() {

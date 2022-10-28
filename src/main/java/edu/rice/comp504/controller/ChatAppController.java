@@ -3,6 +3,7 @@ package edu.rice.comp504.controller;
 import com.google.gson.Gson;
 import edu.rice.comp504.adapter.WebSocketAdapter;
 import edu.rice.comp504.model.DispatcherAdapter;
+import edu.rice.comp504.model.user.AUser;
 
 import static spark.Spark.*;
 
@@ -24,13 +25,17 @@ public class ChatAppController {
         DispatcherAdapter da = DispatcherAdapter.makeDispatcher();
 
         post("/register", (request, response) -> {
-            da.register("username", "password", 0, "school", "interests");
-            return gson.toJson("register");
+            AUser user = da.register(request.queryParams("username"),
+                        request.queryParams("password"),
+                        Integer.parseInt(request.queryParams("age")),
+                        request.queryParams("school"),
+                        request.queryParams("interests"));
+            return gson.toJson(user);
         });
 
         post("/login", (request, response) -> {
-            da.login("username", "password");
-            return gson.toJson("login");
+            AUser user = da.login(request.queryParams("username"), request.queryParams("password"));
+            return gson.toJson(user);
         });
 
         get("/chatroom/getChatroomList", (request, response) -> {

@@ -8,7 +8,7 @@ public interface IUserFactory {
      * Create a singleton factory.
      * @return The singleton factory
      */
-    IUserFactory makeFactory();
+//    IUserFactory makeFactory();
 
     /**
      * Make a user object.
@@ -19,5 +19,5 @@ public interface IUserFactory {
      * @param interests list of interests of user combined into a string
      * @return the user object
      */
-    User makeUser(String username, String pwd, int age, String school, String interests);
+    AUser makeUser(String username, String pwd, int age, String school, String[] interests);
 }

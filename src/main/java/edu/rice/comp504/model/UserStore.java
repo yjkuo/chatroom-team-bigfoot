@@ -1,7 +1,10 @@
 package edu.rice.comp504.model;
 
 import edu.rice.comp504.model.chatroom.AChatroom;
+import edu.rice.comp504.model.user.AUser;
+import edu.rice.comp504.model.user.NullUser;
 import edu.rice.comp504.model.user.User;
+import edu.rice.comp504.model.user.UserFactory;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.util.List;
@@ -12,7 +15,7 @@ public class UserStore implements IUserStore{
     /**
      * List of all users.
      */
-    private Map<String, User> userList = new ConcurrentHashMap<>();
+    private Map<String, AUser> userList = new ConcurrentHashMap<>();
     /**
      * List of users that has active connections with the server.
      */
@@ -34,13 +37,26 @@ public class UserStore implements IUserStore{
     }
 
     @Override
-    public User register(String username, String pwd, int age, String school, String[] interests) {
-        return null;
+    public AUser register(String username, String pwd, int age, String school, String[] interests) {
+        AUser user = null;
+        if (userList.get(username) == null) {
+            user = UserFactory.makeFactory().makeUser(username, pwd, age, school, interests);
+            userList.put(username, user);
+        } else {
+            user = new NullUser();
+        }
+
+        return user;
     }
 
     @Override
-    public User login(String username, String pwd) {
-        return null;
+    public AUser login(String username, String pwd) {
+        AUser user = userList.get(username);
+        if ( user == null || !user.getPwd().equals(pwd)) {
+            return new NullUser();
+        }
+
+        return user;
     }
 
     @Override

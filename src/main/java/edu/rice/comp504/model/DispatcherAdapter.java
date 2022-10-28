@@ -2,6 +2,7 @@ package edu.rice.comp504.model;
 
 import edu.rice.comp504.model.chatroom.AChatroom;
 import edu.rice.comp504.model.message.AMessage;
+import edu.rice.comp504.model.user.AUser;
 import edu.rice.comp504.model.user.User;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -34,13 +35,13 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public User register(String username, String pwd, int age, String school, String interests) {
-        return null;
+    public AUser register(String username, String pwd, int age, String school, String interests) {
+         return us.register(username, pwd, age, school, interests.split("&"));
     }
 
     @Override
-    public User login(String username, String pwd) {
-        return null;
+    public AUser login(String username, String pwd) {
+        return us.login(username, pwd);
     }
 
     @Override

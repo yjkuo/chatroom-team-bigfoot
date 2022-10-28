@@ -25,10 +25,10 @@
                     <h3 class="card-title text-center">Login</h3>
                     <form id="form-login">
                         <div class="row pt-3 mx-1">
-                            <input type="text" class="form-control" placeholder="Username" id="login-username"/>
+                            <input type="text" class="form-control" placeholder="Username" id="login-username" required/>
                         </div>
                         <div class="row pt-3 mx-1">
-                            <input type="text" class="form-control" placeholder="Password" id="login-password"/>
+                            <input type="text" class="form-control" placeholder="Password" id="login-password" required/>
                         </div>
                         <div class="row pt-3 mx-1">
                             <button class="btn btn-secondary" id="btn-login">Submit</button>
@@ -44,52 +44,52 @@
                     <div class="alert alert-danger mt-3" role="alert">Username is taken</div>
                     <form id="form-signup">
                         <div class="row pt-3 mx-1">
-                            <input type="text" class="form-control" placeholder="Username" id="in-username"/>
+                            <input type="text" class="form-control" placeholder="Username" id="in-username" required/>
                         </div>
                         <div class="row pt-3 mx-1">
-                            <input type="password" class="form-control" placeholder="Password" id="in-password"/>
+                            <input type="password" class="form-control" placeholder="Password" id="in-password" required/>
                         </div>
                         <div class="row pt-3 mx-1">
-                            <input type="text" class="form-control" placeholder="Age" id="in-age"/>
+                            <input type="text" class="form-control" placeholder="Age" id="in-age" pattern="[0-9]*" required/>
                         </div>
                         <div class="row pt-3 mx-1">
-                            <input type="text" class="form-control" placeholder="School" id="in-school"/>
+                            <input type="text" class="form-control" placeholder="School" id="in-school" required/>
                         </div>
                         <div class="row pt-3 mx-1">
                             <h4 class="card-title">Select Your Interests</h4>
-                            <div class="ps-2">
+                            <div class="ps-2 checkbox-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chk-music">
+                                    <input class="form-check-input" type="checkbox" value="music" id="chk-music">
                                     <label class="form-check-label" for="chk-music">
                                         Music
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chk-news">
+                                    <input class="form-check-input" type="checkbox" value="news" id="chk-news">
                                     <label class="form-check-label" for="chk-news">
                                         News
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chk-sports">
+                                    <input class="form-check-input" type="checkbox" value="sports" id="chk-sports">
                                     <label class="form-check-label" for="chk-sports">
                                         Sports
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chk-movies">
+                                    <input class="form-check-input" type="checkbox" value="movies" id="chk-movies">
                                     <label class="form-check-label" for="chk-movies">
                                         Movies
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chk-science">
+                                    <input class="form-check-input" type="checkbox" value="science" id="chk-science">
                                     <label class="form-check-label" for="chk-science">
                                         Science
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chk-travel">
+                                    <input class="form-check-input" type="checkbox" value="travel" id="chk-travel">
                                     <label class="form-check-label" for="chk-travel">
                                         Travel
                                     </label>
