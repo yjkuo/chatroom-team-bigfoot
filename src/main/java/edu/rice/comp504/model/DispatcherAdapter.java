@@ -24,8 +24,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         us = UserStore.makeStore();
         String[] interests = {"Music"};
         AUser firstUser = us.register("Sky", "a", 12, "Rice University", interests);
-        AChatroom firstChatroom = cs.createChatRoom("Owl Games", "public", "Sky", 20);
-        us.addChatRoomToList("Sky", "Owl Games");
+        createChatRoom("Sky", "Owl Games", "public", 20);
+        createChatRoom("Sky", "Secret Service", "private", 10);
     }
 
     /**
@@ -65,7 +65,11 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public AChatroom createChatRoom(String username, String chatroomName, String type, int size) {
-        return cs.createChatRoom(chatroomName, type, username, size);
+        AChatroom chatroom = cs.createChatRoom(chatroomName, type, username, size);
+        if (!chatroom.getRoomName().equals("")) {
+            us.addChatRoomToList(username, chatroomName);
+        }
+        return chatroom;
     }
 
     @Override

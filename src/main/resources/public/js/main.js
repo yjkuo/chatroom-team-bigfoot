@@ -1,9 +1,12 @@
 'use strict';
 
+import {chatroomsListElement} from './components.js';
+
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
 
 let username = localStorage.getItem('username');
+let openChatroom = "";
 
 /**
  * Entry point into chat room
@@ -84,7 +87,11 @@ function loadChatRoomList() {
         username: username
     }
     $.get("/chatroom/getChatroomList", payload, function(data) {
-        console.log(data);
+        let chatroomNames = JSON.parse(data);
+        chatroomNames.forEach(item => {
+            var isOpen = item === openChatroom;
+            $('#div-chatrooms-list').append(chatroomsListElement(item, isOpen));
+        });
     });
 }
 
