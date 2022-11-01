@@ -63,6 +63,11 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         return null;
     }
 
+    public AChatroom openChatRoom(String username, String chatroomName) {
+        us.setUsersOpenChatroom(username, chatroomName);
+        return cs.getChatRoom(chatroomName);
+    }
+
     @Override
     public AChatroom createChatRoom(String username, String chatroomName, String type, int size) {
         AChatroom chatroom = cs.createChatRoom(chatroomName, type, username, size);

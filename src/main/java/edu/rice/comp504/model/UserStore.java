@@ -116,4 +116,11 @@ public class UserStore implements IUserStore{
     public boolean banUserFromAll(String username) {
         return false;
     }
+
+    public void setUsersOpenChatroom(String username, String chatroomName) {
+        AUser user = userList.get(username);
+        if (user != null) {
+            user.setOpenChatroom(chatroomName);
+        }
+    }
 }

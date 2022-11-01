@@ -82,8 +82,15 @@ function sendMsg(msg) {
     }
 }
 
-function chatRoomOpen(chatRoomName) {
-    console.log(chatRoomName);
+function chatRoomOpen(chatroomName) {
+    console.log(chatroomName);
+    let payload = {
+        username: username,
+        chatroomName: chatroomName,
+    };
+    $.post("/chatroom/connectToChatroom", payload, function(data) {
+        console.log(data);
+    });
 }
 
 function loadChatRoomList() {

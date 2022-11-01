@@ -17,6 +17,7 @@ public abstract class AUser {
     private int status;
     private boolean online;
     private int numOfHateSpeech;
+    private String openChatroom;
 
     /**
      * Constructor.
@@ -117,6 +118,22 @@ public abstract class AUser {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * Get which chatroom user has open.
+     * @return open chatroom
+     */
+    public String getOpenChatroom() {
+        return openChatroom;
+    }
+
+    /**
+     * Set which chatroom user has open.
+     * @param chatroom opened chatroom
+     */
+    public void setOpenChatroom(String chatroom) {
+        this.openChatroom = chatroom;
     }
 
     /**
