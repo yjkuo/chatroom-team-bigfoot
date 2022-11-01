@@ -82,15 +82,24 @@ function sendMsg(msg) {
     }
 }
 
+function chatRoomOpen(chatRoomName) {
+    console.log(chatRoomName);
+}
+
 function loadChatRoomList() {
     let payload = {
         username: username
     }
     $.get("/chatroom/getChatroomList", payload, function(data) {
         let chatroomNames = JSON.parse(data);
+        $('#div-chatrooms-list').empty();
         chatroomNames.forEach(item => {
             var isOpen = item === openChatroom;
-            $('#div-chatrooms-list').append(chatroomsListElement(item, isOpen));
+            var html = chatroomsListElement(item, isOpen);
+            $(html).appendTo($('#div-chatrooms-list'));
+        });
+        $(".btn-open-chatroom").click(function() {
+            chatRoomOpen($(this).parent().children('label').text());
         });
     });
 }
