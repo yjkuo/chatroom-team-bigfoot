@@ -6,12 +6,6 @@ package edu.rice.comp504.model.chatroom;
 public interface IChatroomFactory {
 
     /**
-     * Create a singleton factory.
-     * @return The singleton factory
-     */
-    IChatroomFactory makeFactory();
-
-    /**
      * Make a chatroom.
      * @param name Unique name of the chatroom
      * @param type Type of the chatroom (public or private)
