@@ -144,7 +144,7 @@ public interface IDispatcherAdapter {
      * @param username String username of the new admin.
      * @return username of the new admin.
      */
-    String setAdmin(String chatroomName, String username);
+    void setAdmin(String chatroomName, String username);
 
     /**
      * Send the message to either everyone in the chat room or a specific user.

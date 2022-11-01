@@ -9,4 +9,8 @@ public class DirectMessage extends AMessage {
         super(messageID, chatRoomName, content, sender, type);
         this.receiver = receiver;
     }
+
+    public String getReceiver() {
+        return receiver;
+    }
 }

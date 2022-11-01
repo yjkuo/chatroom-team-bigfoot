@@ -60,7 +60,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public AChatroom getChatRoom(String chatroomName) {
-        return null;
+        return cs.getChatRoom(chatroomName);
     }
 
     public AChatroom openChatRoom(String username, String chatroomName) {
@@ -79,7 +79,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public AChatroom joinChatRoom(String username, String chatroomName) {
-        return null;
+        AChatroom result = cs.addUserToChatroom(chatroomName, username);
+        us.addChatRoomToList(username, chatroomName);
+        return result;
     }
 
     @Override
@@ -94,7 +96,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public List<String> getAllUsers(String chatroomName) {
-        return null;
+        return cs.getUserList(chatroomName);
     }
 
     @Override
@@ -104,7 +106,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public boolean deleteUser(String username, String chatroomName) {
-        return false;
+        cs.removeUserFromChatroom(chatroomName, username);
+        us.removeChatRoomFromList(username, chatroomName);
+        return true;
     }
 
     @Override
@@ -124,12 +128,12 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public String getAdmin(String chatroomName) {
-        return null;
+        return cs.getAdmin(chatroomName);
     }
 
     @Override
-    public String setAdmin(String chatroomName, String username) {
-        return null;
+    public void setAdmin(String chatroomName, String username) {
+        cs.setAdmin(chatroomName, username);
     }
 
     @Override
@@ -139,7 +143,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public List<AMessage> getMessageForUser(String username, String chatroomName) {
-        return null;
+        return cs.getMessageForUser(username, chatroomName);
     }
 
     @Override
@@ -154,6 +158,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public void leaveRoom(String username, String chatroomName) {
-
+        cs.removeUserFromChatroom(chatroomName, username);
+        us.removeChatRoomFromList(username, chatroomName);
     }
 }
