@@ -51,7 +51,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public void offline(String username, Session userSession) {
-
+        us.offline(username, userSession);
     }
 
     @Override

@@ -68,12 +68,15 @@ public class UserStore implements IUserStore{
 
     @Override
     public void online(String username, Session userSession) {
-
+        userSessionMap.put(username, userSession);
+        sessionUserMap.put(userSession, username);
     }
 
     @Override
     public void offline(String username, Session userSession) {
-
+        String user = sessionUserMap.get(userSession);
+        sessionUserMap.remove(userSession);
+        userSessionMap.remove(user);
     }
 
     @Override

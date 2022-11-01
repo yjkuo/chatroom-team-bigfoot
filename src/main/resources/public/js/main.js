@@ -9,9 +9,10 @@ const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.por
 window.onload = function() {
     let username = localStorage.getItem('username');
     if (!username) window.location.href = "/";
-
+    $(".chat-element").hide();
     let msg = {
-        "type" : "initialize"
+        "type" : "initialize",
+        "username" : username
     }
     webSocket.onopen = () => webSocket.send(JSON.stringify(msg));
 

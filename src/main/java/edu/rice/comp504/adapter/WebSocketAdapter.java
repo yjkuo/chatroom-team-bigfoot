@@ -45,8 +45,7 @@ public class WebSocketAdapter {
     public void onMessage(Session session, String message) {
         HashMap<String,String> messageMap = gson.fromJson(message, new TypeToken<HashMap<String, String>>(){}.getType());
         if (messageMap.get("type").equals("initialize")) {
-            System.out.println("got message");
-//            co.online(messageMap.get("username"), session);
+            co.online(messageMap.get("username"), session);
         }
     }
 }
