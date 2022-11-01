@@ -87,7 +87,7 @@ public interface IDispatcherAdapter {
      * @param username String username of the user
      * @return List of chat rooms of that user
      */
-    ArrayList<AChatroom> getChatRoomForUser(String username);
+    ArrayList<String> getChatRoomForUser(String username);
 
     /**
      * Return a list of all users from the chatroom.

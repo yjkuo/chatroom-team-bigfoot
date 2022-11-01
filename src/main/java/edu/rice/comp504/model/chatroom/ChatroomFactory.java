@@ -24,6 +24,7 @@ public class ChatroomFactory implements IChatroomFactory {
             }
         }
         return chatroom;
+    }
 
     /**
      * Make a chatroom.
@@ -32,7 +33,7 @@ public class ChatroomFactory implements IChatroomFactory {
      * @param size Size of the chatroom
      * @return The created chatroom
      */
-    public AChatroom makeChatRoom(String name, String type, int size) {
-        return new Chatroom(name, type, size);
-    }
+//    public AChatroom makeChatRoom(String name, String type, int size) {
+//        return new Chatroom(name, type, size);
+//    }
 }

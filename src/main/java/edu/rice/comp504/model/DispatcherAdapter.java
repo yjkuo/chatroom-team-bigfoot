@@ -25,6 +25,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         String[] interests = {"Music"};
         AUser firstUser = us.register("Sky", "a", 12, "Rice University", interests);
         AChatroom firstChatroom = cs.createChatRoom("Owl Games", "public", "Sky", 20);
+        us.addChatRoomToList("Sky", "Owl Games");
     }
 
     /**
@@ -78,8 +79,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public ArrayList<AChatroom> getChatRoomForUser(String username) {
-        return null;
+    public ArrayList<String> getChatRoomForUser(String username) {
+        return us.getChatRoomForUser(username);
     }
 
     @Override

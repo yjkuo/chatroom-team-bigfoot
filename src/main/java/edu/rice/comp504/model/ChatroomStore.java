@@ -37,7 +37,7 @@ public class ChatroomStore implements IChatroomStore{
 
     @Override
     public AChatroom getChatRoom(String chatroomName) {
-        return null;
+        return chatroomList.get(chatroomName);
     }
 
     @Override
@@ -58,6 +58,7 @@ public class ChatroomStore implements IChatroomStore{
         if (chatroomList.get(chatroomName) == null) {
             chatroom = ChatroomFactory.makeFactory().makeChatRoom(chatroomName, type, size);
             chatroomList.put(chatroomName, chatroom);
+            addUserToChatroom(chatroomName, username);
             setAdmin(chatroomName, username);
         } else {
             chatroom = new NullChatroom();
@@ -67,7 +68,12 @@ public class ChatroomStore implements IChatroomStore{
 
     @Override
     public void addUserToChatroom(String chatroomName, String username) {
-
+        AChatroom chatroom = chatroomList.get(chatroomName);
+        if (chatroom != null) {
+            if (chatroom.getNumberOfUsers() < chatroom.getSize()) {
+                chatroom.addUser(username);
+            }
+        }
     }
 
     @Override

@@ -113,6 +113,8 @@ public abstract class AChatroom {
      */
     public void addUser(String username) {
         users.add(username);
+        userJoinedTime.put(username, currentMessageID);
+        numberOfUsers++;
     }
 
     /**
@@ -155,23 +157,24 @@ public abstract class AChatroom {
      * @return map of messages for that specific user
      */
     public ArrayList<AMessage> getMessages(String username) {
-        ArrayList<AMessage> result = new ArrayList<>();
-        int joinedTime = this.userJoinedTime.get(username);
-        //check timestamp
-        for (Map.Entry<Integer, AMessage> entry: this.messages.entrySet()) {
-            if (entry.getValue().getMessageID() > joinedTime) {
-                //check whether direct message
-                if (Objects.equals(entry.getValue().getType(), "direct")) {
-                    if (Objects.equals(((DirectMessage) entry.getValue()).getReceiver(), username) ||
-                        Objects.equals(entry.getValue().getSender(), username)) {
-                        result.add(entry.getValue());
-                    }
-                } else {
-                    result.add(entry.getValue());
-                }
-            }
-        }
-        return result;
+//        ArrayList<AMessage> result = new ArrayList<>();
+//        int joinedTime = this.userJoinedTime.get(username);
+//        //check timestamp
+//        for (Map.Entry<Integer, AMessage> entry: this.messages.entrySet()) {
+//            if (entry.getValue().getMessageID() > joinedTime) {
+//                //check whether direct message
+//                if (Objects.equals(entry.getValue().getType(), "direct")) {
+//                    if (Objects.equals(((DirectMessage) entry.getValue()).getReceiver(), username) ||
+//                        Objects.equals(entry.getValue().getSender(), username)) {
+//                        result.add(entry.getValue());
+//                    }
+//                } else {
+//                    result.add(entry.getValue());
+//                }
+//            }
+//        }
+//        return result;
+        return null;
     }
 
     /**

@@ -3,11 +3,12 @@
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
 
+let username = localStorage.getItem('username');
+
 /**
  * Entry point into chat room
  */
 window.onload = function() {
-    let username = localStorage.getItem('username');
     if (!username) window.location.href = "/";
     $(".chat-element").hide();
     let msg = {
@@ -15,6 +16,8 @@ window.onload = function() {
         "username" : username
     }
     webSocket.onopen = () => webSocket.send(JSON.stringify(msg));
+
+    loadChatRoomList();
 
     webSocket.onclose = () => alert("WebSocket connection closed");
     // webSocket.onmessage = (msg) => updateChatRoom(msg);
@@ -75,43 +78,15 @@ function sendMsg(msg) {
         chat.scrollTop(chat.prop("scrollHeight"));
     }
 }
-/**
- * Send a message to the server.
- * @param msg  The message to send to the server.
- */
-// function sendMessage(msg) {
-//     if (msg !== "") {
-//         webSocket.send(msg);
-//         $("#message").val("");
-//     }
-// }
 
-function signUp() {
-    console.log("sign_up");
-    console.log($("input[type='checkbox']").serialize());
+function loadChatRoomList() {
     let payload = {
-        username: $('#in-username').val(),
-        password: $('#in-password').val(),
-        age: $('#in-age').val(),
-        school: $('#in-school').val(),
-        interests: "fas"
+        username: username
     }
-    $.post("/register", payload);
+    $.get("/chatroom/getChatroomList", payload, function(data) {
+        console.log(data);
+    });
 }
-
-function addEmoji() {
-    console.log($("this").text());
-    $("#txt-message").val($(this).attr("value"));
-}
-
-/**
- * Update the chat room with a message.
- * @param message  The message to update the chat room with.
- */
-// function updateChatRoom(message) {
-//     let data = JSON.parse(message.data);
-//     $("#chatArea").append(data["userMessage"]);
-// }
 
 function logout() {
     localStorage.removeItem('username');

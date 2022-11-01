@@ -7,6 +7,7 @@ import edu.rice.comp504.model.user.User;
 import edu.rice.comp504.model.user.UserFactory;
 import org.eclipse.jetty.websocket.api.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -62,7 +63,11 @@ public class UserStore implements IUserStore{
     }
 
     @Override
-    public List<AChatroom> getChatRoomForUser(String username) {
+    public ArrayList<String> getChatRoomForUser(String username) {
+        AUser user = userList.get(username);
+        if ( user != null ) {
+            return user.getMyChatRooms();
+        }
         return null;
     }
 
@@ -81,7 +86,10 @@ public class UserStore implements IUserStore{
 
     @Override
     public void addChatRoomToList(String username, String chatroomName) {
-
+        AUser user = userList.get(username);
+        if (user != null) {
+            user.addChatRoom(chatroomName);
+        }
     }
 
     @Override

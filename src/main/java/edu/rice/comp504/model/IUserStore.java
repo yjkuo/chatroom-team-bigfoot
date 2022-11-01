@@ -6,6 +6,7 @@ import edu.rice.comp504.model.user.IUserFactory;
 import edu.rice.comp504.model.user.User;
 import org.eclipse.jetty.websocket.api.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -47,7 +48,7 @@ public interface IUserStore {
      * @param username String username of the user
      * @return List of chat rooms of that user
      */
-    List<AChatroom> getChatRoomForUser(String username);
+    ArrayList<String> getChatRoomForUser(String username);
 
     /**
      * Mark a user as online and store its unique session.
