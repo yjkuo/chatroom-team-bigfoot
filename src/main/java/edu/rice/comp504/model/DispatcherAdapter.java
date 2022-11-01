@@ -85,7 +85,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public Map<String, AChatroom> getAllPublicChatRooms() {
+    public ArrayList<AChatroom> getAllPublicChatRooms() {
+        cs.getAllPublicChatRooms();
         return null;
     }
 

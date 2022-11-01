@@ -29,7 +29,12 @@ function signUp() {
     };
     $.post("/register", payload, function(data) {
         console.log(data.username);
-        if (data.username !== "") window.location.href = "/main.html";
+        if (data.username !== "") {
+            window.location.href = "/main.html";
+        }
+        else {
+            $('#alert-signup').show();
+        }
     }, "json");
 }
 
@@ -39,6 +44,11 @@ function logIn() {
         password: $('#login-password').val()
     };
     $.post("/login", payload, function(data) {
-        if (data.username !== "") window.location.href = "/main.html";
+        if (data.username !== "") {
+            window.location.href = "/main.html";
+        }
+        else {
+            $('#alert-login').show();
+        }
     }, "json");
 }

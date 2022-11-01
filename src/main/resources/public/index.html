@@ -23,6 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center">Login</h3>
+                    <div class="alert alert-danger mt-3" role="alert" id="alert-login" style="display: none">Username or Password is incorrect</div>
                     <form id="form-login">
                         <div class="row pt-3 mx-1">
                             <input type="text" class="form-control" placeholder="Username" id="login-username" required/>
@@ -41,7 +42,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center">Sign Up</h3>
-                    <div class="alert alert-danger mt-3" role="alert">Username is taken</div>
+                    <div class="alert alert-danger mt-3" role="alert" id="alert-signup" style="display: none">Username is taken</div>
                     <form id="form-signup">
                         <div class="row pt-3 mx-1">
                             <input type="text" class="form-control" placeholder="Username" id="in-username" required/>

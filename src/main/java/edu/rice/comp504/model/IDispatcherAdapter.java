@@ -99,7 +99,7 @@ public interface IDispatcherAdapter {
      * Return a list of all public chat rooms.
      * @return List of public chatrooms.
      */
-    Map<String, AChatroom> getAllPublicChatRooms();
+    ArrayList<AChatroom> getAllPublicChatRooms();
 
     /**
      * Delete a user from the chat room.
