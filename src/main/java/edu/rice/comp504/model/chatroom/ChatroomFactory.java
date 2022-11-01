@@ -1,7 +1,5 @@
 package edu.rice.comp504.model.chatroom;
 
-import edu.rice.comp504.model.user.UserFactory;
-
 public class ChatroomFactory implements IChatroomFactory {
     private static ChatroomFactory ONLY;
     /**
@@ -14,6 +12,18 @@ public class ChatroomFactory implements IChatroomFactory {
         }
         return ONLY;
     }
+
+    @Override
+    public AChatroom makeChatRoom(String name, String type, int size) {
+        AChatroom chatroom;
+        switch (type) {
+            case "public" -> chatroom = new PublicChatroom(name, size);
+            case "private" -> chatroom = new PrivateChatroom(name, size);
+            default -> {
+                chatroom = new NullChatroom();
+            }
+        }
+        return chatroom;
 
     /**
      * Make a chatroom.

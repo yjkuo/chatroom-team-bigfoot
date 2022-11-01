@@ -1,10 +1,13 @@
 package edu.rice.comp504.model.chatroom;
 
 import edu.rice.comp504.model.message.AMessage;
+import edu.rice.comp504.model.message.DirectMessage;
+import edu.rice.comp504.model.user.AUser;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -19,7 +22,8 @@ public abstract class AChatroom {
     private ArrayList<String> users;
     private ArrayList<String> bans;
     private Map<Integer, AMessage> messages;
-    private Map<String, Date> userJoinedTime;
+    private int currentMessageID;
+    private Map<String, Integer> userJoinedTime;
 
     /**
      * Constructor for AChatroom.
@@ -32,6 +36,7 @@ public abstract class AChatroom {
         this.type = type;
         this.size = size;
         this.numberOfUsers = 0;
+        this.currentMessageID = 1;
         this.users = new ArrayList<>();
         this.bans = new ArrayList<>();
         this.messages = new ConcurrentHashMap<>();
@@ -139,8 +144,8 @@ public abstract class AChatroom {
      * @param username username of the user that will be unbanned
      */
     public void removeBans(String username) {
-        if (users.contains(username)) {
-            this.users.remove(username);
+        if (bans.contains(username)) {
+            this.bans.remove(username);
         }
     }
 
@@ -149,16 +154,32 @@ public abstract class AChatroom {
      * @param username username of the user
      * @return map of messages for that specific user
      */
-    public Map<Integer, AMessage> getMessages(String username) {
-        //TODO filter message based on specific user's joined time
-        return null;
+    public ArrayList<AMessage> getMessages(String username) {
+        ArrayList<AMessage> result = new ArrayList<>();
+        int joinedTime = this.userJoinedTime.get(username);
+        //check timestamp
+        for (Map.Entry<Integer, AMessage> entry: this.messages.entrySet()) {
+            if (entry.getValue().getMessageID() > joinedTime) {
+                //check whether direct message
+                if (Objects.equals(entry.getValue().getType(), "direct")) {
+                    if (Objects.equals(((DirectMessage) entry.getValue()).getReceiver(), username) ||
+                        Objects.equals(entry.getValue().getSender(), username)) {
+                        result.add(entry.getValue());
+                    }
+                } else {
+                    result.add(entry.getValue());
+                }
+            }
+        }
+        return result;
     }
 
     /**
      * Add the message to the chatroom.
      */
-    public void addMessage() {
-        //TODO coordinate with AMessage class to add the message
+    public void addMessage(AMessage message) {
+        this.messages.put(message.getMessageID(), message);
+        currentMessageID++;
     }
 
     /**
@@ -166,7 +187,8 @@ public abstract class AChatroom {
      * @param messageID ID of the message that will be deleted
      */
     public void deleteMessage(int messageID) {
-        //TODO coordinate with AMessage class to delete the message
+        this.messages.remove(messageID);
+        currentMessageID--;
     }
 
     /**
@@ -175,6 +197,10 @@ public abstract class AChatroom {
      * @param newContent new content of the message
      */
     public void editMessage(int messageID, String newContent) {
-        //TODO coordinate with AMessage class to edit the message
+        AMessage messageToBeEdited = this.messages.get(messageID);
+        if (messageToBeEdited != null) {
+            messageToBeEdited.setContent(newContent);
+            this.messages.replace(messageID, messageToBeEdited);
+        }
     }
 }

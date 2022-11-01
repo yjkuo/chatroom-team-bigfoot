@@ -4,7 +4,6 @@ package edu.rice.comp504.model.chatroom;
  * A factory that will make chatroom.
  */
 public interface IChatroomFactory {
-
     /**
      * Make a chatroom.
      * @param name Unique name of the chatroom
