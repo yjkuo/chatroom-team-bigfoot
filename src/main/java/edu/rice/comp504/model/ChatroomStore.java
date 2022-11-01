@@ -67,33 +67,35 @@ public class ChatroomStore implements IChatroomStore{
     }
 
     @Override
-    public void addUserToChatroom(String chatroomName, String username) {
+    public AChatroom addUserToChatroom(String chatroomName, String username) {
         AChatroom chatroom = chatroomList.get(chatroomName);
         if (chatroom != null) {
             if (chatroom.getNumberOfUsers() < chatroom.getSize()) {
                 chatroom.addUser(username);
             }
         }
+        return chatroom;
     }
 
     @Override
     public void removeUserFromChatroom(String chatroomName, String username) {
-
+        AChatroom roomToRemove = this.chatroomList.get(chatroomName);
+        roomToRemove.removeUser(username);
     }
 
     @Override
-    public List<User> getUserList(String chatroomName) {
-        return null;
+    public List<String> getUserList(String chatroomName) {
+        return chatroomList.get(chatroomName).getUsers();
     }
 
     @Override
     public List<AMessage> getMessageForUser(String username, String chatroomName) {
-        return null;
+        return chatroomList.get(chatroomName).getMessages(username);
     }
 
     @Override
     public String getAdmin(String chatroomName) {
-        return null;
+        return chatroomList.get(chatroomName).getAdmin();
     }
 
     @Override
@@ -103,4 +105,6 @@ public class ChatroomStore implements IChatroomStore{
             chatroom.setAdmin(username);
         }
     }
+
+
 }

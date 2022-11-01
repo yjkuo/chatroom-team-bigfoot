@@ -45,7 +45,7 @@ public interface IChatroomStore {
      * @param chatroomName unique chatroom name
      * @param username unique user name
      */
-    void addUserToChatroom(String chatroomName, String username);
+    AChatroom addUserToChatroom(String chatroomName, String username);
 
     /**
      * Remove a user from the chatroom.
@@ -59,7 +59,7 @@ public interface IChatroomStore {
      * @param chatroomName unique chatroom name
      * @return list of users
      */
-    List<User> getUserList(String chatroomName);
+    List<String> getUserList(String chatroomName);
 
     /**
      * Get the message for a user in a chatroom.
