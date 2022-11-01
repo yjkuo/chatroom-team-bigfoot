@@ -1,27 +1,22 @@
 'use strict';
 
-// const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
+const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
 
 /**
  * Entry point into chat room
  */
 window.onload = function() {
+    let username = localStorage.getItem('username');
+    if (!username) window.location.href = "/";
 
-    // webSocket.onclose = () => alert("WebSocket connection closed");
+    let msg = {
+        "type" : "initialize"
+    }
+    webSocket.onopen = () => webSocket.send(JSON.stringify(msg));
+
+    webSocket.onclose = () => alert("WebSocket connection closed");
     // webSocket.onmessage = (msg) => updateChatRoom(msg);
-
-    $('#form-login').submit(function(e) {
-        e.preventDefault();
-        console.log("hello");
-        // window.location.href = "/main.html";
-    })
-
-    $('#form-signup').submit(function(e) {
-        e.preventDefault();
-        signUp();
-        // window.location.href = "/main.html";
-    })
 
     $(".chatroom").scrollTop($(".chatroom")[0].scrollHeight);
 
@@ -38,6 +33,8 @@ window.onload = function() {
         let $this = $(this); 
         $("#room-name").html($this.data('alias'));
     })
+
+    $("#btn-logout").click(() => logout());
 };
 
 function sendMsg(msg) {
@@ -114,3 +111,8 @@ function addEmoji() {
 //     let data = JSON.parse(message.data);
 //     $("#chatArea").append(data["userMessage"]);
 // }
+
+function logout() {
+    localStorage.removeItem('username');
+    window.location.href = "/";
+}

@@ -21,6 +21,8 @@ public class UserStore implements IUserStore{
      */
     private Map<String, Session> userSessionMap = new ConcurrentHashMap<>();
 
+    private Map<Session, String> sessionUserMap =  new ConcurrentHashMap<>();
+
     private static UserStore ONLY;
 
     private UserStore(){}

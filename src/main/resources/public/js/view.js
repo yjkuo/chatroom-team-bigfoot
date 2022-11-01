@@ -1,6 +1,8 @@
 'use strict';
 
 window.onload = function() {
+    let username = localStorage.getItem('username');
+    if (username) window.location.href = "/main.html";
     $('#form-login').submit(function(e) {
         e.preventDefault();
         logIn();
@@ -30,6 +32,7 @@ function signUp() {
     $.post("/register", payload, function(data) {
         console.log(data.username);
         if (data.username !== "") {
+            localStorage.setItem('username', payload.username);
             window.location.href = "/main.html";
         }
         else {
@@ -45,6 +48,7 @@ function logIn() {
     };
     $.post("/login", payload, function(data) {
         if (data.username !== "") {
+            localStorage.setItem('username', payload.username);
             window.location.href = "/main.html";
         }
         else {

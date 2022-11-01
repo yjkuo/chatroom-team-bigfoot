@@ -46,7 +46,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public void online(String username, Session userSession) {
-
+        us.online(username, userSession);
     }
 
     @Override
