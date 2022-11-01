@@ -5,6 +5,7 @@ import edu.rice.comp504.model.chatroom.AChatroom;
 import edu.rice.comp504.model.message.AMessage;
 import edu.rice.comp504.model.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,8 +36,15 @@ public class ChatroomStore implements IChatroomStore{
     }
 
     @Override
-    public List<AChatroom> getAllPublicChatRooms() {
-        return null;
+    public ArrayList<AChatroom> getAllPublicChatRooms() {
+        ArrayList<AChatroom> publicChatrooms = new ArrayList<>();
+        for (Map.Entry<String, AChatroom> entry : chatroomList.entrySet()) {
+            AChatroom chatroom = entry.getValue();
+            if (chatroom.getType().equals("public")) {
+                publicChatrooms.add(chatroom);
+            }
+        }
+        return publicChatrooms;
     }
 
     @Override
