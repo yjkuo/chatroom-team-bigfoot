@@ -16,7 +16,7 @@ public class MessageStore implements IMessageStore{
     private UserStore us;
     private Gson gson;
 
-    private MessageStore(){
+    private MessageStore() {
         cs = ChatroomStore.makeStore();
         us = UserStore.makeStore();
         gson = new Gson();
@@ -54,8 +54,7 @@ public class MessageStore implements IMessageStore{
                     e.printStackTrace();
                 }
             }
-        }
-        else {
+        } else {
             try {
                 Session userSession = us.getUserSession(receiver);
                 if (userSession != null) {

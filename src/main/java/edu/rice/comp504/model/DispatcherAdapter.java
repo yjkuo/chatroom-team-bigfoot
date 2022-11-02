@@ -53,7 +53,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public AUser register(String username, String pwd, int age, String school, String interests) {
-         return us.register(username, pwd, age, school, interests.split("&"));
+        return us.register(username, pwd, age, school, interests.split("&"));
     }
 
     @Override

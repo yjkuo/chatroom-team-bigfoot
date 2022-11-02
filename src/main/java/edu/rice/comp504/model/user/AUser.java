@@ -174,14 +174,14 @@ public abstract class AUser {
     }
 
     /**
-     * Get the list of invited rooms
+     * Get the list of invited rooms.
      */
     public ArrayList<String> getInvitedRooms() {
         return invitedRooms;
     }
 
     /**
-     * Add to the list of invited rooms
+     * Add to the list of invited rooms.
      */
     public ArrayList<String> addRoomToInvitedList(String chatroomName) {
         invitedRooms.add(chatroomName);

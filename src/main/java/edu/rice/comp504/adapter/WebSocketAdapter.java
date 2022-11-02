@@ -10,6 +10,7 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -25,7 +26,13 @@ public class WebSocketAdapter {
      * @param session The user whose session is opened.
      */
     @OnWebSocketConnect
-    public void onConnect(Session session) {}
+    public void onConnect(Session session) {
+        try {
+            session.getRemote().sendString("connectNow");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Close the user's session.
@@ -43,6 +50,7 @@ public class WebSocketAdapter {
      */
     @OnWebSocketMessage
     public void onMessage(Session session, String message) {
+        System.out.println(message);
         HashMap<String,String> messageMap = gson.fromJson(message, new TypeToken<HashMap<String, String>>(){}.getType());
         if (messageMap.get("type").equals("initialize")) {
             co.online(messageMap.get("username"), session);

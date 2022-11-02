@@ -3,7 +3,7 @@
 import {chatroomsListElement, userListElement, leftMsgHtml, rightMsgHtml, publicRoomListElement, privateRoomListElement} from './components.js';
 
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
-// const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
+// const webSocket = new WebSocket("wss://" + "chatapp-final-team-bigfoot.herokuapp.com" + "/chatapp");
 
 let username = localStorage.getItem('username');
 
@@ -290,6 +290,7 @@ function handleWebsocketMessage(message) {
     else if (message.data == "updateUsers") console.log("updateUsers");
     else if (message.data == "updateMessages") console.log("updateMessages");
     else if (message.data == "updatePublicRooms") console.log("updatePublicRooms");
+    else if (message.data == "connectNow") console.log("connectNow");
     else {
         let msg = JSON.parse(message.data);
         if (msg.chatRoomName == currentChatroom) {

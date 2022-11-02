@@ -22,7 +22,7 @@ public class UserFactory implements IUserFactory{
      * @param interests list of interests of user combined into a string
      * @return the user object
      */
-    public AUser makeUser(String username, String pwd, int age, String school, String[] interests){
+    public AUser makeUser(String username, String pwd, int age, String school, String[] interests) {
         return new User(username, pwd, age, school, interests);
     }
 }

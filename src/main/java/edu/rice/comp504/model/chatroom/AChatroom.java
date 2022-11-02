@@ -76,7 +76,7 @@ public abstract class AChatroom {
     }
 
     /**
-     * Get the next unique messageID
+     * Get the next unique messageID.
      * @return current MessageID
      */
     public int getCurrentMessageID() {

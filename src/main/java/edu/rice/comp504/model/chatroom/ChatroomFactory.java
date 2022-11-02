@@ -17,9 +17,15 @@ public class ChatroomFactory implements IChatroomFactory {
     public AChatroom makeChatRoom(String name, String type, int size) {
         AChatroom chatroom;
         switch (type) {
-            case "public" -> chatroom = new PublicChatroom(name, size);
-            case "private" -> chatroom = new PrivateChatroom(name, size);
-            default -> {
+            case ("public"): {
+                chatroom = new PublicChatroom(name, size);
+                break;
+            }
+            case ("private"): {
+                chatroom = new PrivateChatroom(name, size);
+                break;
+            }
+            default: {
                 chatroom = new NullChatroom();
             }
         }

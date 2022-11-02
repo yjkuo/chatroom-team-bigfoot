@@ -98,7 +98,7 @@ public class UserStore implements IUserStore{
 
     }
 
-    private void sendInviteToWebSocket(String receiver){
+    private void sendInviteToWebSocket(String receiver) {
         try {
             Session userSession = getUserSession(receiver);
             if (userSession != null) {
@@ -158,6 +158,9 @@ public class UserStore implements IUserStore{
         return false;
     }
 
+    /**
+     * Set a users open chatroom.
+     * */
     public void setUsersOpenChatroom(String username, String chatroomName) {
         AUser user = userList.get(username);
         if (user != null) {
@@ -169,10 +172,16 @@ public class UserStore implements IUserStore{
         return userList.get(username).getInvitedRooms();
     }
 
+    /**
+     * Get a users session.
+     * */
     public Session getUserSession(String username) {
         return userSessionMap.get(username);
     }
 
+    /**
+     * prompt users to update list of public rooms.
+     * */
     public void promptUsersToUpdatePublicRooms() {
         for (Map.Entry<String, AUser> entry : userList.entrySet()) {
             String chatroomUser = entry.getKey();
