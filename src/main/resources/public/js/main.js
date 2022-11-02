@@ -1,12 +1,12 @@
 'use strict';
 
-import {chatroomsListElement, userListElement, leftMsgHtml, rightMsgHtml} from './components.js';
+import {chatroomsListElement, userListElement, leftMsgHtml, rightMsgHtml, publicRoomListElement} from './components.js';
 
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
 
 let username = localStorage.getItem('username');
-let openChatroom = "";
+let currentChatroom = "";
 
 /**
  * Entry point into chat room
@@ -21,6 +21,8 @@ window.onload = function() {
     webSocket.onopen = () => webSocket.send(JSON.stringify(msg));
 
     loadChatRoomList();
+
+    loadPublicRoomList();
 
     webSocket.onclose = () => alert("WebSocket connection closed");
     webSocket.onmessage = (msg) => handleWebsocketMessage(msg);
@@ -54,7 +56,7 @@ function sendMsg(msg) {
         let sendto = $('#send-to-list').find(":selected").val();
         let payload = {
             sender: username,
-            chatroomName: openChatroom,
+            chatroomName: currentChatroom,
             content: msg,
             receiver: sendto
         };
@@ -95,7 +97,23 @@ function sendMsg(msg) {
     }
 }
 
-function chatRoomOpen(chatroomName) {
+function loadMessages() {
+    let payload = {
+        username: username,
+        chatroomName: currentChatroom,
+    };
+    $.get("/chatroom/getMessages", payload, function(data) {
+        data = JSON.parse(data);
+        console.log(data);
+        $('#div-msg-list').empty();
+        data.forEach(message => {
+            let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content);
+            $(msgHtml).appendTo($('#div-msg-list'));
+        });
+    });
+}
+
+function openChatroom(chatroomName) {
     let payload = {
         username: username,
         chatroomName: chatroomName,
@@ -108,6 +126,7 @@ function chatRoomOpen(chatroomName) {
         }
         else $('#div-invite-box').show();
 
+        currentChatroom = chatroomName;
         $("#room-name").text(chatroomName);
 
         $('#div-user-list').empty();
@@ -124,17 +143,8 @@ function chatRoomOpen(chatroomName) {
             console.log($(this).parent().children('label').text());
         });
 
-        $.get("/chatroom/getMessages", payload, function(data) {
-            data = JSON.parse(data);
-            console.log(data);
-            $('#div-msg-list').empty();
-            data.forEach(message => {
-                let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content);
-                $(msgHtml).appendTo($('#div-msg-list'));
-            });
-        });
+        loadMessages();
 
-        openChatroom = chatroomName;
         $(".chat-element").show();
         loadChatRoomList();
     });
@@ -148,12 +158,52 @@ function loadChatRoomList() {
         let chatroomNames = JSON.parse(data);
         $('#div-chatrooms-list').empty();
         chatroomNames.forEach(item => {
-            var isOpen = item === openChatroom;
+            if (currentChatroom === "") {
+                openChatroom(item);
+                return;
+            }
+            var isOpen = item === currentChatroom;
             var html = chatroomsListElement(item, isOpen);
             $(html).appendTo($('#div-chatrooms-list'));
         });
         $(".btn-open-chatroom").click(function() {
-            chatRoomOpen($(this).parent().children('label').text());
+            openChatroom($(this).parent().children('label').text());
+        });
+    });
+}
+
+function joinChatroom(chatroomName) {
+    let payload = {
+        username: username,
+        chatroomName: chatroomName,
+    };
+    $.post("/chatroom/joinChatroom", payload, function(data) {
+        data = JSON.parse(data);
+        if (data.roomName === "") {
+            $('#alert-public-room-full').show();
+        }
+        else {
+            loadPublicRoomList();
+            loadChatRoomList();
+            $('#alert-public-room-full').hide();
+        }
+    });
+}
+
+function loadPublicRoomList() {
+    let payload = {
+        username: username
+    }
+    $.get("/chatroom/getPublicRoomList", payload, function(data) {
+        let chatroomNames = JSON.parse(data);
+        $('#div-public-room-list').empty();
+        chatroomNames.forEach(item => {
+            var html = publicRoomListElement(item);
+            $(html).appendTo($('#div-public-room-list'));
+        });
+        $(".btn-join-chatroom").click(function() {
+            console.log($(this).parent().children('label').text());
+            joinChatroom($(this).parent().children('label').text());
         });
     });
 }

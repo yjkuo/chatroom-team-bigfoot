@@ -26,21 +26,9 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="nav-join" role="tabpanel" aria-labelledby="nav-join-tab">
-                                    <div class="alert alert-danger mt-3" role="alert" style="display: none">Room Is Full</div>
+                                    <div class="alert alert-danger mt-3" role="alert" style="display: none" id="alert-public-room-full">Room Is Full</div>
                                     <div class="scrollable">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">
-                                                Public Room 1
-                                                <button class="btn btn-success btn-sm float-end">Join</button>
-                                            </li>
-                                            <li class="list-group-item">
-                                                Public Room 2
-                                                <button class="btn btn-success btn-sm float-end">Join</button>
-                                            </li>
-                                            <li class="list-group-item">
-                                                Public Room 3
-                                                <button class="btn btn-success btn-sm float-end">Join</button>
-                                            </li>
+                                        <ul class="list-group list-group-flush" id="div-public-room-list">
                                         </ul>
                                     </div>
                                 </div>
@@ -75,27 +63,6 @@
                                     <button class="btn btn-danger w-100 mt-2 mb-2" id="btn-leave-all">Leave All Rooms</button>
                                     <div class="scrollable">
                                         <div class="list-group list-group-flush" id="div-chatrooms-list">
-<!--                                            <a href="#" class="lst-rooms list-group-item list-group-item-action" data-alias="Owl Games">-->
-<!--                                                Owl Games-->
-<!--                                                <div class="float-end">-->
-<!--                                                    <span class="pe-1" style="font-size:10.0pt">Members : 3/15</span>-->
-<!--                                                    <button class="btn btn-success btn-sm float-end" hidden>Open</button>-->
-<!--                                                </div>-->
-<!--                                            </a>-->
-<!--                                            <a href="#" class="lst-rooms list-group-item list-group-item-action" data-alias="Room 2">-->
-<!--                                                Joined Room 2-->
-<!--                                                <div class="float-end">-->
-<!--                                                    <span class="pe-1" style="font-size:10.0pt">Members : 5/20</span>-->
-<!--                                                    <button class="btn btn-success btn-sm float-end">Open</button>-->
-<!--                                                </div>-->
-<!--                                            </a>-->
-<!--                                            <a href="#" class="lst-rooms list-group-item list-group-item-action" data-alias="Room 3">-->
-<!--                                                Joined Room 3-->
-<!--                                                <div class="float-end">-->
-<!--                                                    <span class="pe-1" style="font-size:10.0pt">Members : 15/25</span>-->
-<!--                                                    <button class="btn btn-success btn-sm float-end">Open</button>-->
-<!--                                                </div>-->
-<!--                                            </a>-->
                                         </div>
                                     </div>
                                 </div>

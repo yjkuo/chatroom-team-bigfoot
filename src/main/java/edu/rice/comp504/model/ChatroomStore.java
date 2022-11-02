@@ -42,8 +42,8 @@ public class ChatroomStore implements IChatroomStore{
     }
 
     @Override
-    public ArrayList<AChatroom> getAllPublicChatRooms(String username) {
-        ArrayList<AChatroom> publicChatrooms = new ArrayList<>();
+    public ArrayList<String> getAllPublicChatRooms(String username) {
+        ArrayList<String> publicChatrooms = new ArrayList<>();
         for (Map.Entry<String, AChatroom> entry : chatroomList.entrySet()) {
             AChatroom chatroom = entry.getValue();
             boolean userAlreadyJoined = false;
@@ -54,7 +54,7 @@ public class ChatroomStore implements IChatroomStore{
                 }
             }
             if (chatroom.getType().equals("public") && !userAlreadyJoined) {
-                publicChatrooms.add(chatroom);
+                publicChatrooms.add(chatroom.getRoomName());
             }
         }
         return publicChatrooms;
