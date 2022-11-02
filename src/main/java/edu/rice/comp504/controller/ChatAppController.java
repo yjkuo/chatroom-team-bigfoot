@@ -71,6 +71,16 @@ public class ChatAppController {
             return gson.toJson("leave chatroom");
         });
 
+        post("/chatroom/leaveAllChatroom", (request, response) -> {
+            da.leaveAllRoom(request.queryParams("username"));
+            return gson.toJson("leave chatroom");
+        });
+
+        post("/chatroom/report", ((request, response) -> {
+            da.reportUser(request.queryParams("username"), request.queryParams("chatroomName"));
+            return gson.toJson("reported user");
+        }));
+
         post("/chatroom/inviteToChatroom", (request, response) -> {
             return gson.toJson(da.inviteToJoin(request.queryParams("sender"), request.queryParams("receiver"), request.queryParams("chatroomName")));
         });

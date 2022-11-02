@@ -190,6 +190,12 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         }
     }
 
+    public void leaveAllRoom(String username) {
+        for (String room: us.getUsers(username).getMyChatRooms()) {
+            this.leaveRoom(username, room, 0);
+        }
+    }
+
     public void banAll(String username) {
         ArrayList<String> myChatRooms = us.getChatRoomForUser(username);
         for (Map.Entry<String, AChatroom> chatroom: cs.getAllChatrooms().entrySet()) {
@@ -202,6 +208,11 @@ public class DispatcherAdapter implements IDispatcherAdapter {
                 }
             }
         }
+    }
+    
+    public void reportUser(String username, String chatroomName) {
+        String msg = username + "was reported by a member in this chatroom.";
+        ms.sendMessage("", "System", "Everyone", msg, chatroomName);
     }
 
     public ArrayList<String> getInvitedRoomForUser(String username) {
