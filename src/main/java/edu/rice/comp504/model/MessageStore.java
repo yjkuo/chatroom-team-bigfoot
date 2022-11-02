@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import edu.rice.comp504.model.chatroom.AChatroom;
 import edu.rice.comp504.model.message.AMessage;
 import edu.rice.comp504.model.message.MessageFactory;
+import edu.rice.comp504.model.user.AUser;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.io.IOException;
@@ -62,6 +63,22 @@ public class MessageStore implements IMessageStore{
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+        if (content != null) {
+            if (content.contains("hate speech")) {
+                try {
+                    AUser senderObject = us.getUsers(sender);
+                    senderObject.setNumOfHateSpeech(senderObject.getNumOfHateSpeech() + 1);
+                    String warningContent = "Your speech contains hateful speech. If you tried to send it 3 times, you will be removed from all rooms.";
+                    AMessage warningMessage = MessageFactory.makeFactory().makeMessage(chatroom.getCurrentMessageID(), chatroomName, warningContent, "System", sender, "direct");
+                    Session userSession = us.getUserSession(sender);
+                    if (userSession != null) {
+                        userSession.getRemote().sendString(gson.toJson(warningMessage));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

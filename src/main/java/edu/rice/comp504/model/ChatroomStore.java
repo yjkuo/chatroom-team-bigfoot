@@ -74,6 +74,10 @@ public class ChatroomStore implements IChatroomStore{
         return chatroom;
     }
 
+    public void removeChatRoom(String chatroomName) {
+        chatroomList.remove(chatroomName);
+    }
+
     @Override
     public AChatroom addUserToChatroom(String chatroomName, String username) {
         AChatroom chatroom = chatroomList.get(chatroomName);
@@ -116,5 +120,8 @@ public class ChatroomStore implements IChatroomStore{
         }
     }
 
+    public Map<String, AChatroom> getAllChatrooms() {
+        return chatroomList;
+    }
 
 }

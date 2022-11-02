@@ -80,9 +80,11 @@ public class UserStore implements IUserStore{
 
     @Override
     public void offline(String username, Session userSession) {
-        String user = sessionUserMap.get(userSession);
-        sessionUserMap.remove(userSession);
-        userSessionMap.remove(user);
+        if (username != null) {
+            String user = sessionUserMap.get(userSession);
+            sessionUserMap.remove(userSession);
+            userSessionMap.remove(user);
+        }
     }
 
     @Override
@@ -95,7 +97,10 @@ public class UserStore implements IUserStore{
 
     @Override
     public void removeChatRoomFromList(String username, String chatroomName) {
-
+        AUser user = userList.get(username);
+        if (user != null) {
+            user.removeChatRoom(chatroomName);
+        }
     }
 
     private void sendInviteToWebSocket(String receiver) {
@@ -144,18 +149,8 @@ public class UserStore implements IUserStore{
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return null;
-    }
-
-    @Override
-    public void warnUser(String username) {
-
-    }
-
-    @Override
-    public boolean banUserFromAll(String username) {
-        return false;
+    public AUser getUsers(String username) {
+        return userList.get(username);
     }
 
     /**
