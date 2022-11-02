@@ -172,4 +172,18 @@ public class UserStore implements IUserStore{
     public Session getUserSession(String username) {
         return userSessionMap.get(username);
     }
+
+    public void promptUsersToUpdatePublicRooms() {
+        for (Map.Entry<String, AUser> entry : userList.entrySet()) {
+            String chatroomUser = entry.getKey();
+            try {
+                Session userSession = getUserSession(chatroomUser);
+                if (userSession != null) {
+                    userSession.getRemote().sendString("updatePublicRooms");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

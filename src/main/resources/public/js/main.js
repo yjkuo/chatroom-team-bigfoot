@@ -269,6 +269,10 @@ function loadInvitedToList() {
 function handleWebsocketMessage(message) {
     console.log(message.data);
     if (message.data == "updateInvites") loadInvitedToList();
+    else if (message.data == "updateUsers") console.log("updateUsers");
+    else if (message.data == "updateMessages") console.log("updateMessages");
+    else if (message.data == "updatePublicRooms") console.log("updatePublicRooms");
+    else console.log(message.data);
 }
 
 function logout() {

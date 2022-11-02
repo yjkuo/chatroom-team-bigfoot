@@ -67,8 +67,27 @@ public class MessageStore implements IMessageStore{
         }
     }
 
-    public void sendStringToAllInRoom(String content, String chatroomName) {
+    private void sendStringToAllInChatroom(String content, String chatroomName) {
+        AChatroom chatroom = cs.getChatRoom(chatroomName);
+        ArrayList<String> chatroomUsers = chatroom.getUsers();
+        for (String chatroomUser: chatroomUsers) {
+            try {
+                Session userSession = us.getUserSession(chatroomUser);
+                if (userSession != null) {
+                    userSession.getRemote().sendString(content);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
+    public void promptUsersToUpdateUserList(String chatroomName) {
+        sendStringToAllInChatroom("updateUsers", chatroomName);
+    }
+
+    public void promptUsersToUpdateMessages(String chatroomName) {
+        sendStringToAllInChatroom("updateMessages", chatroomName);
     }
 
     @Override
