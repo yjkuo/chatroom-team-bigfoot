@@ -85,8 +85,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public AChatroom inviteToJoin(String username, String chatroomName) {
-        return null;
+    public ArrayList<String> inviteToJoin(String username, String chatroomName) {
+        return us.invitedToJoin(chatroomName, username);
     }
 
     @Override
@@ -100,8 +100,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public ArrayList<AChatroom> getAllPublicChatRooms() {
-        return cs.getAllPublicChatRooms();
+    public ArrayList<AChatroom> getAllPublicChatRooms(String username) {
+        return cs.getAllPublicChatRooms(username);
     }
 
     @Override
@@ -160,5 +160,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     public void leaveRoom(String username, String chatroomName) {
         cs.removeUserFromChatroom(chatroomName, username);
         us.removeChatRoomFromList(username, chatroomName);
+    }
+
+    public ArrayList<String> getInvitedRoomForUser(String username) {
+        return us.getInvitedRoomForUser(username);
     }
 }

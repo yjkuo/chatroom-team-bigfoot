@@ -13,6 +13,7 @@ import edu.rice.comp504.model.user.UserFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ChatroomStore implements IChatroomStore{
@@ -41,11 +42,18 @@ public class ChatroomStore implements IChatroomStore{
     }
 
     @Override
-    public ArrayList<AChatroom> getAllPublicChatRooms() {
+    public ArrayList<AChatroom> getAllPublicChatRooms(String username) {
         ArrayList<AChatroom> publicChatrooms = new ArrayList<>();
         for (Map.Entry<String, AChatroom> entry : chatroomList.entrySet()) {
             AChatroom chatroom = entry.getValue();
-            if (chatroom.getType().equals("public")) {
+            boolean userAlreadyJoined = false;
+            for (String user: chatroom.getUsers()) {
+                if (Objects.equals(user, username)) {
+                    userAlreadyJoined = true;
+                    break;
+                }
+            }
+            if (chatroom.getType().equals("public") && !userAlreadyJoined) {
                 publicChatrooms.add(chatroom);
             }
         }

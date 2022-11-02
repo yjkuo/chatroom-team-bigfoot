@@ -28,7 +28,7 @@ public interface IChatroomStore {
      * Get all public chat rooms on the server.
      * @return list of all public chatrooms.
      */
-    List<AChatroom> getAllPublicChatRooms();
+    List<AChatroom> getAllPublicChatRooms(String username);
 
     /**
      * Create the chatroom with specific name and size.
