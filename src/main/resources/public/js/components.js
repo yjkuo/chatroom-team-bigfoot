@@ -90,7 +90,16 @@ export function publicRoomListElement(roomName) {
     return `
         <li class="list-group-item">
             <label>${roomName}</label>
-            <button class="btn btn-success btn-sm float-end btn-join-chatroom">Join</button>
+            <button class="btn btn-success btn-sm float-end btn-join-public-chatroom">Join</button>
+        </li>
+    `
+}
+
+export function privateRoomListElement(roomName) {
+    return `
+        <li class="list-group-item">
+            <label>${roomName}</label>
+            <button class="btn btn-success btn-sm float-end btn-join-private-chatroom">Join</button>
         </li>
     `
 }

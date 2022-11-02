@@ -80,10 +80,10 @@ public interface IUserStore {
 
     /**
      * Invite user to join the chatroom.
-     * @param username unique username
+     * @param sender unique username
      * @param chatroomName name of the chatroom that invite the user
      */
-    ArrayList<String> invitedToJoin(String chatroomName, String username);
+    boolean invitedToJoin(String chatroomName, String sender, String receiver);
 
     /**
      * Return a list of all users.

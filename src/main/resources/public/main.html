@@ -74,25 +74,10 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title text-center">Invited To</h4>
+                            <div class="alert alert-danger mt-3" role="alert" style="display: none" id="alert-invited-room-full">Room Is Full</div>
                             <div class="invited">
                                 <div class="overflow-auto">
-                                    <ul class="list-group list-group-flush overflow-auto">
-                                        <li class="list-group-item">
-                                            Room 1
-                                            <button class="btn btn-success btn-sm float-end">Join</button>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Room 2
-                                            <button class="btn btn-success btn-sm float-end">Join</button>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Room 3
-                                            <button class="btn btn-success btn-sm float-end">Join</button>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Room 4
-                                            <button class="btn btn-success btn-sm float-end">Join</button>
-                                        </li>
+                                    <ul class="list-group list-group-flush overflow-auto" id="div-invited-to-list">
                                     </ul>
                                 </div>
                             </div>
@@ -233,9 +218,9 @@
                     <div class="card text-center" id="div-invite-box">
                         <div class="card-body">
                             <h5 class="card-title text-center">Invite User</h5>
-                            <div class="alert alert-danger mt-3" role="alert" style="display: none">Room Is Full</div>
+                            <div class="alert alert-danger mt-3" role="alert" style="display: none" id="alert-invite-user">No School/Interest match</div>
                             <div class="invite">
-                                <input type="text" class="form-control" placeholder="Username"/>
+                                <input type="text" class="form-control" placeholder="Username" id="inp-invite-user"/>
                                 <button class="btn btn-primary w-100 mt-2" id="btn-invite">Invite</button>
                             </div>
                         </div>

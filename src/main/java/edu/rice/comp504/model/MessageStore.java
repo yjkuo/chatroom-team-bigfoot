@@ -67,6 +67,10 @@ public class MessageStore implements IMessageStore{
         }
     }
 
+    public void sendStringToAllInRoom(String content, String chatroomName) {
+
+    }
+
     @Override
     public void editMessage(int messageID, String chatroomName, String content) {
         AChatroom chatroom = cs.getChatRoom(chatroomName);

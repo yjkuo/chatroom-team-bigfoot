@@ -43,7 +43,7 @@ public class ChatAppController {
         });
 
         get("/chatroom/getInvitedRoomList", (request, response) -> {
-            return gson.toJson(da.getChatRoomForUser(request.queryParams("username")));
+            return gson.toJson(da.getInvitedRoomForUser(request.queryParams("username")));
         });
 
         get("/chatroom/getPublicRoomList", (request, response) -> {
@@ -72,8 +72,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/inviteToChatroom", (request, response) -> {
-            da.inviteToJoin("username", "chatroomName");
-            return gson.toJson("Invite To chatroom");
+            return gson.toJson(da.inviteToJoin(request.queryParams("sender"), request.queryParams("receiver"), request.queryParams("chatroomName")));
         });
 
         get("/chatroom/userList", (request, response) -> {
