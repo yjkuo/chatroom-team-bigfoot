@@ -107,7 +107,7 @@ public interface IDispatcherAdapter {
      * @param chatroomName String chat room name
      * @return Success or failure to delete the user
      */
-    boolean deleteUser(String username, String chatroomName);
+    boolean banUser(String username, String chatroomName);
 
     /**
      * Return the admin of the room.

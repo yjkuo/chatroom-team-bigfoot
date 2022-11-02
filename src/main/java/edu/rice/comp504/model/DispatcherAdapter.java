@@ -123,12 +123,13 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public ArrayList<String> getAllPublicChatRooms(String username) {
-        return cs.getAllPublicChatRooms(username);
+        return cs.getAllPublicChatRooms(username, us.getUsers(username).getBannedRooms());
     }
 
     @Override
-    public boolean deleteUser(String username, String chatroomName) {
+    public boolean banUser(String username, String chatroomName) {
         this.leaveRoom(username, chatroomName, 1);
+        us.getUsers(username).addBannedRooms(chatroomName);
         return true;
     }
 
@@ -190,18 +191,31 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         }
     }
 
+    public void leaveAllRoom(String username) {
+        for (String room: us.getUsers(username).getMyChatRooms()) {
+            this.leaveRoom(username, room, 0);
+        }
+    }
+
     public void banAll(String username) {
         ArrayList<String> myChatRooms = us.getChatRoomForUser(username);
+        AUser userToBeBanned = us.getUsers(username);
         for (Map.Entry<String, AChatroom> chatroom: cs.getAllChatrooms().entrySet()) {
             for (String roomname: myChatRooms) {
                 if (Objects.equals(roomname, chatroom.getValue().getRoomName())) {
                     String warningContent = "You have been banned from all rooms.";
                     ms.sendMessage("", "System", username, warningContent, chatroom.getKey());
+                    userToBeBanned.addBannedRooms(roomname);
                     this.leaveRoom(username, roomname, 1);
                     break;
                 }
             }
         }
+    }
+    
+    public void reportUser(String username, String chatroomName) {
+        String msg = username + "was reported by a member in this chatroom.";
+        ms.sendMessage("", "System", "Everyone", msg, chatroomName);
     }
 
     public ArrayList<String> getInvitedRoomForUser(String username) {

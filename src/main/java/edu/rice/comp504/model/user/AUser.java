@@ -19,6 +19,7 @@ public abstract class AUser {
     private String[] interests;
     private ArrayList<String> myChatRooms;
     private ArrayList<String> invitedRooms;
+    private ArrayList<String> bannedRooms;
     //Indicate the status of user (normal - 0, warned - 1, banned - 2)
     private int status;
     private boolean online;
@@ -41,6 +42,7 @@ public abstract class AUser {
         this.interests = interests;
         this.myChatRooms = new ArrayList<>();
         this.invitedRooms = new ArrayList<>();
+        this.bannedRooms = new ArrayList<>();
         this.status = 0;
         this.numOfHateSpeech = 0;
         this.online = false;
@@ -194,5 +196,13 @@ public abstract class AUser {
     public ArrayList<String> addRoomToInvitedList(String chatroomName) {
         invitedRooms.add(chatroomName);
         return invitedRooms;
+    }
+
+    public ArrayList<String> getBannedRooms() {
+        return bannedRooms;
+    }
+
+    public void addBannedRooms(String chatroomName) {
+        bannedRooms.add(chatroomName);
     }
 }

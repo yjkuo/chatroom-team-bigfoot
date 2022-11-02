@@ -42,7 +42,7 @@ public class ChatroomStore implements IChatroomStore{
     }
 
     @Override
-    public ArrayList<String> getAllPublicChatRooms(String username) {
+    public ArrayList<String> getAllPublicChatRooms(String username, ArrayList<String> bannedRooms) {
         ArrayList<String> publicChatrooms = new ArrayList<>();
         for (Map.Entry<String, AChatroom> entry : chatroomList.entrySet()) {
             AChatroom chatroom = entry.getValue();
@@ -53,7 +53,7 @@ public class ChatroomStore implements IChatroomStore{
                     break;
                 }
             }
-            if (chatroom.getType().equals("public") && !userAlreadyJoined) {
+            if (chatroom.getType().equals("public") && !userAlreadyJoined && !bannedRooms.contains(chatroom.getRoomName())) {
                 publicChatrooms.add(chatroom.getRoomName());
             }
         }
