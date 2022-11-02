@@ -67,6 +67,9 @@ window.onload = function() {
 
     $('#btn-invite').click(() => inviteUser($('#inp-invite-user').val()));
 
+    $('#btn-leave').click(() => leaveChatRoom(currentChatroom));
+    $('#btn-leave-all').click(() => leaveAllChatRooms());
+
 };
 
 function sendMsg(msg) {
@@ -128,6 +131,8 @@ function loadMessages() {
         data.forEach(message => {
             let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
+            let chat = $('.chatroom');
+            chat.scrollTop(chat.prop("scrollHeight"));
         });
     });
 }
@@ -330,7 +335,7 @@ function editMsg(id, element) {
         let spanHtml = `<span>${content}</span>`;
         let payload = {
             id: id,
-            chatroomName: openChatroom,
+            chatroomName: currentChatroom,
             content: content
         }
         $.post("/chatroom/editMessage", payload);
@@ -343,9 +348,35 @@ function editMsg(id, element) {
 function deleteMsg(id) {
     let payload = {
         id: id,
-        chatroomName: openChatroom
+        chatroomName: currentChatroom
     }
     $.post("/chatroom/deleteMessage", payload);
+}
+
+function leaveAllChatRooms() {
+    let payload = {
+        username: username
+    }
+    $.get("/chatroom/getChatroomList", payload, function(data) {
+        $('#div-chatrooms-list').empty();
+        let chatroomNames = JSON.parse(data);
+        chatroomNames.forEach(item => {
+            $.post("/chatroom/leaveChatroom", {
+                username: username,
+                chatroomName: item
+            });
+        });
+    });
+}
+
+function leaveChatRoom(roomName) {
+    let payload = {
+        username: username,
+        chatroomName: currentChatroom
+    }
+    $.post("/chatroom/leaveChatroom", payload);
+    currentChatroom = "";
+    loadChatRoomList();
 }
 
 function convertMsgToHtml(msgId, sender, receiver, content, isAdmin) {

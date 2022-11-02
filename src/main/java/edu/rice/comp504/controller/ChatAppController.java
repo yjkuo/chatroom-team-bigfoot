@@ -67,7 +67,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/leaveChatroom", (request, response) -> {
-            da.leaveRoom("username", "chatroomName");
+            da.leaveRoom(request.queryParams("username"), request.queryParams("chatroomName"));
             return gson.toJson("leave chatroom");
         });
 

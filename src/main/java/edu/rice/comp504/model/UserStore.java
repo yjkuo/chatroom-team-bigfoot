@@ -95,7 +95,10 @@ public class UserStore implements IUserStore{
 
     @Override
     public void removeChatRoomFromList(String username, String chatroomName) {
-
+        AUser user = userList.get(username);
+        if (user != null) {
+            user.removeChatRoom(chatroomName);
+        }
     }
 
     private void sendInviteToWebSocket(String receiver){
