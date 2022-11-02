@@ -7,6 +7,7 @@ const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.por
 
 let username = localStorage.getItem('username');
 let openChatroom = "";
+let editMsgID = 0;
 
 /**
  * Entry point into chat room
@@ -47,6 +48,17 @@ window.onload = function() {
         e.preventDefault();
         createChatRoom();
     })
+
+    $(document).on('click', '.delete-btn', function(){
+        let id = $(this).closest(".container").attr("id").slice(-1);
+        $(this).closest(".container").remove();
+        deleteMsg(id);
+    });
+
+    $(document).on('click', '.edit-btn', function(){
+        let id = $(this).closest(".container").attr("id").slice(-1);
+        editMsg(id, $(this));
+    });
 };
 
 function sendMsg(msg) {
@@ -67,29 +79,9 @@ function sendMsg(msg) {
             msg = msg.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
         }
 
-        var msgHtml = `
-                        <div class="container pb-3">
-                            <div class="chat-message-right">
-                                <div class="flex-shrink-1 rounded py-2 px-3 mr-3"> 
-                                    <div class="d-flex flex-row">
-                                        <div class="d-flex flex-column px-2">           
-                                            <div class="fw-bold mb-1">You to ${sendto}</div>
-                                            ${msg}
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <div><button class="btn btn-warning btn-sm w-100">Edit</button></div>
-                                            <div><button class="btn btn-danger btn-sm w-100">Del</button></div>
-                                        </div> 
-                                    </div>
-                                </div>                                                    
-                            </div>
-                            <div class="float-end">
-                                <span style="font-size:10.0pt">Delivered</span>
-                            </div>   
-                        </div>
-    `;
+        let msgHtml = convertMsgToHtml(-1, username, sendto, msg);
         $(".chat-messages").append(msgHtml);
-        $("#txt-message").val(''); 
+        $("#txt-message").val('');
         let chat = $('.chatroom');
         chat.scrollTop(chat.prop("scrollHeight"));
     }
@@ -124,15 +116,7 @@ function chatRoomOpen(chatroomName) {
             console.log($(this).parent().children('label').text());
         });
 
-        $.get("/chatroom/getMessages", payload, function(data) {
-            data = JSON.parse(data);
-            console.log(data);
-            $('#div-msg-list').empty();
-            data.forEach(message => {
-                let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content);
-                $(msgHtml).appendTo($('#div-msg-list'));
-            });
-        });
+        loadMessages(payload);
 
         openChatroom = chatroomName;
         $(".chat-element").show();
@@ -154,6 +138,17 @@ function loadChatRoomList() {
         });
         $(".btn-open-chatroom").click(function() {
             chatRoomOpen($(this).parent().children('label').text());
+        });
+    });
+}
+
+function loadMessages(payload) {
+    $.get("/chatroom/getMessages", payload, function(data) {
+        data = JSON.parse(data);
+        $('#div-msg-list').empty();
+        data.forEach(message => {
+            let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content);
+            $(msgHtml).appendTo($(".chat-messages"));
         });
     });
 }
@@ -188,13 +183,41 @@ function createChatRoom() {
     }, "json");
 }
 
+function editMsg(id, element) {
+    if (editMsgID == 0) {
+        let inputHtml = `<input type="text" id="in-edit"/>`;
+        element.parent().parent().children().children('span').replaceWith(inputHtml);
+        editMsgID = id;
+    } else {
+        let content = $("#in-edit").val();
+        let spanHtml = `<span>${content}</span>`;
+        let payload = {
+            id: id,
+            chatroomName: openChatroom,
+            content: content
+        }
+        $.post("/chatroom/editMessage", payload);
+        $("#in-edit").replaceWith(spanHtml);
+        editMsgID = 0;
+    }
+
+}
+
+function deleteMsg(id) {
+    let payload = {
+        id: id,
+        chatroomName: openChatroom
+    }
+    $.post("/chatroom/deleteMessage", payload);
+}
+
 function convertMsgToHtml(msgId, sender, receiver, content) {
     let msg;
     receiver = receiver === username ? "You" : receiver;
     if (sender == username) {
-        msg = rightMsgHtml(receiver, content);
+        msg = rightMsgHtml(receiver, content, msgId);
     } else {
-        msg = leftMsgHtml(sender, receiver, content);
+        msg = leftMsgHtml(sender, receiver, content, msgId);
     }
     return msg;
 }

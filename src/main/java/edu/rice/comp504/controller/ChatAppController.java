@@ -97,12 +97,12 @@ public class ChatAppController {
         });
 
         post("/chatroom/editMessage", (request, response) -> {
-            da.editMessage(1, "chatroomName", "new content");
+            da.editMessage(Integer.parseInt(request.queryParams("id")), request.queryParams("chatroomName"), request.queryParams("content"));
             return gson.toJson("edit message");
         });
 
         post("/chatroom/deleteMessage", (request, response) -> {
-            da.deleteMessage(1, "chatroomName");
+            da.deleteMessage(Integer.parseInt(request.queryParams("id")), request.queryParams("chatroomName"));
             return gson.toJson("delete message");
         });
 

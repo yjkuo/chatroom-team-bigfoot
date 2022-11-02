@@ -161,12 +161,12 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public void deleteMessage(int messageID, String chatroomName) {
-
+        ms.deleteMessage(messageID, chatroomName);
     }
 
     @Override
     public void editMessage(int messageID, String chatroomName, String content) {
-
+        ms.editMessage(messageID, chatroomName, content);
     }
 
     @Override
