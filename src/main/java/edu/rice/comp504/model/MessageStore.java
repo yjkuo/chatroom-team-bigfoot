@@ -40,37 +40,38 @@ public class MessageStore implements IMessageStore{
         AMessage message = MessageFactory.makeFactory().makeMessage(chatroom.getCurrentMessageID(), chatroomName, content, sender, receiver, type);
         chatroom.addMessage(message);
 
-        if (receiver.equals("Everyone")) {
-            ArrayList<String> chatroomUsers = chatroom.getUsers();
-            for (String chatroomUser: chatroomUsers) {
-//                if (chatroomUser.equals(sender)) {
-//                    continue;
-//                }
-                try {
-                    Session userSession = us.getUserSession(chatroomUser);
-                    if (userSession != null) {
-                        userSession.getRemote().sendString(gson.toJson(message));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            try {
-                Session userSession = us.getUserSession(receiver);
-                if (userSession != null) {
-                    userSession.getRemote().sendString(gson.toJson(message));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         if (content != null) {
             if (content.contains("hate speech")) {
                 AUser senderObject = us.getUsers(sender);
                 senderObject.setNumOfHateSpeech(senderObject.getNumOfHateSpeech() + 1);
                 String warningContent = "Your speech contains hateful speech. If you tried to send it 3 times, you will be removed from all rooms.";
                 sendMessage("", "System", sender, warningContent, chatroomName);
+            } else {
+                if (receiver.equals("Everyone")) {
+                    ArrayList<String> chatroomUsers = chatroom.getUsers();
+                    for (String chatroomUser: chatroomUsers) {
+//                if (chatroomUser.equals(sender)) {
+//                    continue;
+//                }
+                        try {
+                            Session userSession = us.getUserSession(chatroomUser);
+                            if (userSession != null) {
+                                userSession.getRemote().sendString(gson.toJson(message));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    try {
+                        Session userSession = us.getUserSession(receiver);
+                        if (userSession != null) {
+                            userSession.getRemote().sendString(gson.toJson(message));
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
