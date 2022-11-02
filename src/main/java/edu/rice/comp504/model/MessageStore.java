@@ -92,11 +92,37 @@ public class MessageStore implements IMessageStore{
 
     @Override
     public void editMessage(int messageID, String chatroomName, String content) {
+        AChatroom chatroom = cs.getChatRoom(chatroomName);
+        chatroom.editMessage(messageID, content);
+        ArrayList<String> chatroomUsers = chatroom.getUsers();
 
+        for (String chatroomUser: chatroomUsers) {
+            try {
+                Session userSession = us.getUserSession(chatroomUser);
+                if (userSession != null) {
+                    userSession.getRemote().sendString(gson.toJson("edit&" + String.valueOf(messageID) + "&" + content));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void deleteMessage(int messageID, String chatroomName) {
+        AChatroom chatroom = cs.getChatRoom(chatroomName);
+        chatroom.deleteMessage(messageID);
+        ArrayList<String> chatroomUsers = chatroom.getUsers();
 
+        for (String chatroomUser: chatroomUsers) {
+            try {
+                Session userSession = us.getUserSession(chatroomUser);
+                if (userSession != null) {
+                    userSession.getRemote().sendString(gson.toJson("delete&" + String.valueOf(messageID)));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
