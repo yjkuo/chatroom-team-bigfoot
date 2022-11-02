@@ -76,11 +76,11 @@ public interface IDispatcherAdapter {
 
     /**
      * Invite a user to join the chat room.
-     * @param username String invited username
+     * @param sender String invited username
      * @param chatroomName String chat room name
      * @return the chatroom or null
      */
-    ArrayList<String> inviteToJoin(String username, String chatroomName);
+    boolean inviteToJoin(String sender, String receiver, String chatroomName);
 
     /**
      * Return a list of users in the chat room.

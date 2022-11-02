@@ -28,6 +28,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         AUser thirdUser = us.register("Godzilla", "a", 28, "Rice University", interests);
         createChatRoom("Sky", "Owl Games", "public", 20);
         createChatRoom("Ray", "Ray rays", "public", 3);
+        createChatRoom("Ray", "Ray private", "private", 1);
         createChatRoom("Sky", "Secret Service", "private", 10);
         createChatRoom("Godzilla", "Attack plan", "public", 10);
         createChatRoom("Godzilla", "Size 1", "public", 1);
@@ -99,8 +100,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public ArrayList<String> inviteToJoin(String username, String chatroomName) {
-        return us.invitedToJoin(chatroomName, username);
+    public boolean inviteToJoin(String sender, String receiver, String chatroomName) {
+        return us.invitedToJoin(chatroomName, sender, receiver);
     }
 
     @Override

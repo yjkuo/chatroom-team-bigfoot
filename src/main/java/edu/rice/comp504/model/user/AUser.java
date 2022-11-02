@@ -87,6 +87,9 @@ public abstract class AUser {
      * @param chatroomName chatroom to be added.
      */
     public void addChatRoom(String chatroomName) {
+        if (invitedRooms.contains(chatroomName)) {
+            invitedRooms.remove(chatroomName);
+        }
         myChatRooms.add(chatroomName);
     }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import {chatroomsListElement, userListElement, leftMsgHtml, rightMsgHtml, publicRoomListElement} from './components.js';
+import {chatroomsListElement, userListElement, leftMsgHtml, rightMsgHtml, publicRoomListElement, privateRoomListElement} from './components.js';
 
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
@@ -23,6 +23,7 @@ window.onload = function() {
     loadChatRoomList();
 
     loadPublicRoomList();
+    loadInvitedToList();
 
     webSocket.onclose = () => alert("WebSocket connection closed");
     webSocket.onmessage = (msg) => handleWebsocketMessage(msg);
@@ -49,6 +50,8 @@ window.onload = function() {
         e.preventDefault();
         createChatRoom();
     })
+
+    $('#btn-invite').click(() => inviteUser($('#inp-invite-user').val()));
 };
 
 function sendMsg(msg) {
@@ -95,6 +98,27 @@ function sendMsg(msg) {
         let chat = $('.chatroom');
         chat.scrollTop(chat.prop("scrollHeight"));
     }
+}
+
+function inviteUser(user) {
+    console.log("here");
+    let payload = {
+        sender: username,
+        receiver: user,
+        chatroomName: currentChatroom,
+    };
+    $.post("/chatroom/inviteToChatroom", payload, function(data) {
+        console.log(data);
+        data = JSON.parse(data);
+        console.log(data);
+        if (data) {
+            $('#inp-invite-user').val("");
+            $('#alert-invite-user').hide();
+        }
+        else {
+            $('#alert-invite-user').show();
+        }
+    });
 }
 
 function loadMessages() {
@@ -172,7 +196,7 @@ function loadChatRoomList() {
     });
 }
 
-function joinChatroom(chatroomName) {
+function joinPublicChatroom(chatroomName) {
     let payload = {
         username: username,
         chatroomName: chatroomName,
@@ -201,15 +225,50 @@ function loadPublicRoomList() {
             var html = publicRoomListElement(item);
             $(html).appendTo($('#div-public-room-list'));
         });
-        $(".btn-join-chatroom").click(function() {
-            console.log($(this).parent().children('label').text());
-            joinChatroom($(this).parent().children('label').text());
+        $(".btn-join-public-chatroom").click(function() {
+            joinPublicChatroom($(this).parent().children('label').text());
+        });
+    });
+}
+
+function joinPrivateChatroom(chatroomName) {
+    let payload = {
+        username: username,
+        chatroomName: chatroomName,
+    };
+    $.post("/chatroom/joinChatroom", payload, function(data) {
+        data = JSON.parse(data);
+        if (data.roomName === "") {
+            $('#alert-invited-room-full').show();
+        }
+        else {
+            loadInvitedToList();
+            loadChatRoomList();
+            $('#alert-invited-room-full').hide();
+        }
+    });
+}
+
+function loadInvitedToList() {
+    let payload = {
+        username: username
+    }
+    $.get("/chatroom/getInvitedRoomList", payload, function(data) {
+        let chatroomNames = JSON.parse(data);
+        $('#div-invited-to-list').empty();
+        chatroomNames.forEach(item => {
+            var html = privateRoomListElement(item);
+            $(html).appendTo($('#div-invited-to-list'));
+        });
+        $(".btn-join-private-chatroom").click(function() {
+            joinPrivateChatroom($(this).parent().children('label').text());
         });
     });
 }
 
 function handleWebsocketMessage(message) {
     console.log(message.data);
+    if (message.data == "updateInvites") loadInvitedToList();
 }
 
 function logout() {

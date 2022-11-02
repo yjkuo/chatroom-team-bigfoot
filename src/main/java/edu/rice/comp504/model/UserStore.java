@@ -7,6 +7,7 @@ import edu.rice.comp504.model.user.User;
 import edu.rice.comp504.model.user.UserFactory;
 import org.eclipse.jetty.websocket.api.Session;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -97,9 +98,49 @@ public class UserStore implements IUserStore{
 
     }
 
+    private void sendInviteToWebSocket(String receiver){
+        try {
+            Session userSession = getUserSession(receiver);
+            if (userSession != null) {
+                userSession.getRemote().sendString("updateInvites");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
-    public ArrayList<String> invitedToJoin(String chatroomName, String username) {
-        return userList.get(username).addRoomToInvitedList(chatroomName);
+    public boolean invitedToJoin(String chatroomName, String sender, String receiver) {
+        AUser senderUser = userList.get(sender);
+        AUser receiverUser = userList.get(receiver);
+
+        if (senderUser == null  || receiverUser == null) {
+            return false;
+        }
+
+        if (receiverUser.getMyChatRooms().contains(chatroomName) || receiverUser.getInvitedRooms().contains(chatroomName)) {
+            return true;
+        }
+
+        if (senderUser.getSchool().equals(receiverUser.getSchool())) {
+            receiverUser.addRoomToInvitedList(chatroomName);
+            sendInviteToWebSocket(receiver);
+            return true;
+        }
+
+        String[] senderInterests = senderUser.getInterests();
+        String[] receiverInterests = receiverUser.getInterests();
+        for (int i = 0; i < senderInterests.length; i++) {
+            for (int j = 0; j < receiverInterests.length; j++) {
+                if (senderInterests[i].equals(receiverInterests[j])) {
+                    receiverUser.addRoomToInvitedList(chatroomName);
+                    sendInviteToWebSocket(receiver);
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override
