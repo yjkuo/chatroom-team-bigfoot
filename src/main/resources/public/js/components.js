@@ -85,3 +85,12 @@ export function leftMsgHtml (sender, receiver, msg, id) {
         </div>
     `;
 }
+
+export function publicRoomListElement(roomName) {
+    return `
+        <li class="list-group-item">
+            <label>${roomName}</label>
+            <button class="btn btn-success btn-sm float-end btn-join-chatroom">Join</button>
+        </li>
+    `
+}

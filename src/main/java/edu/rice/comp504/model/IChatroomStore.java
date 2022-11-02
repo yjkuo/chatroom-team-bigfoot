@@ -4,6 +4,7 @@ import edu.rice.comp504.model.chatroom.AChatroom;
 import edu.rice.comp504.model.message.AMessage;
 import edu.rice.comp504.model.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,7 +29,7 @@ public interface IChatroomStore {
      * Get all public chat rooms on the server.
      * @return list of all public chatrooms.
      */
-    List<AChatroom> getAllPublicChatRooms(String username);
+    ArrayList<String> getAllPublicChatRooms(String username);
 
     /**
      * Create the chatroom with specific name and size.

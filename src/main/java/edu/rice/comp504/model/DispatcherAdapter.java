@@ -29,6 +29,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         createChatRoom("Sky", "Owl Games", "public", 20);
         createChatRoom("Ray", "Ray rays", "public", 3);
         createChatRoom("Sky", "Secret Service", "private", 10);
+        createChatRoom("Godzilla", "Attack plan", "public", 10);
+        createChatRoom("Godzilla", "Size 1", "public", 1);
         joinChatRoom("Ray", "Owl Games");
         joinChatRoom("Godzilla", "Owl Games");
 
@@ -112,7 +114,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public ArrayList<AChatroom> getAllPublicChatRooms(String username) {
+    public ArrayList<String> getAllPublicChatRooms(String username) {
         return cs.getAllPublicChatRooms(username);
     }
 

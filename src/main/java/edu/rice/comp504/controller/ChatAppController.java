@@ -59,8 +59,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/joinChatroom", (request, response) -> {
-            da.joinChatRoom("username", "chatroomName");
-            return gson.toJson("join chatroom");
+            return gson.toJson(da.joinChatRoom(request.queryParams("username"), request.queryParams("chatroomName")));
         });
 
         post("/chatroom/connectToChatroom", (request, response) -> {
