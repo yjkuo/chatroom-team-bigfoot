@@ -1,6 +1,6 @@
 'use strict';
 
-import {chatroomsListElement} from './components.js';
+import {chatroomsListElement, userListElement} from './components.js';
 
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
@@ -83,13 +83,36 @@ function sendMsg(msg) {
 }
 
 function chatRoomOpen(chatroomName) {
-    console.log(chatroomName);
     let payload = {
         username: username,
         chatroomName: chatroomName,
     };
     $.post("/chatroom/connectToChatroom", payload, function(data) {
+        data = JSON.parse(data);
         console.log(data);
+        if (data.type === "public") {
+            $('#div-invite-box').hide();
+        }
+        else $('#div-invite-box').show();
+
+        $("#room-name").text(chatroomName);
+
+        $('#div-user-list').empty();
+        data.users.forEach(user => {
+            var userHtml = userListElement(user, username === user, data.admin === user);
+            $(userHtml).appendTo($('#div-user-list'));
+        })
+
+        $(".btn-ban").click(function() {
+            console.log($(this).parent().children('label').text());
+        });
+
+        $(".btn-report").click(function() {
+            console.log($(this).parent().children('label').text());
+        });
+
+
+        $(".chat-element").show();
     });
 }
 
