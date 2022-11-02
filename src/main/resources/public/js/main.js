@@ -111,8 +111,9 @@ function chatRoomOpen(chatroomName) {
             console.log($(this).parent().children('label').text());
         });
 
-
+        openChatroom = chatroomName;
         $(".chat-element").show();
+        loadChatRoomList();
     });
 }
 
