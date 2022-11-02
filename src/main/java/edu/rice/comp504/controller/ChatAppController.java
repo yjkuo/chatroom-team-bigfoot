@@ -115,7 +115,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/removeUser", (request, response) -> {
-            da.deleteUser("username", "chatroomName");
+            da.banUser("username", "chatroomName");
             return gson.toJson("remove user");
         });
     }
