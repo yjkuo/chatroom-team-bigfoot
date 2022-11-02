@@ -214,7 +214,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
     
     public void reportUser(String username, String chatroomName) {
-        String msg = username + "was reported by a member in this chatroom.";
+        String msg = username + " was reported by a member in this chatroom.";
         ms.sendMessage("", "System", "Everyone", msg, chatroomName);
     }
 

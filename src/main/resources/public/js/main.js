@@ -145,11 +145,35 @@ function loadUserListFromChatroomData(chatroomData) {
     })
 
     $(".btn-ban").click(function() {
-        console.log($(this).parent().children('label').text());
+        let user = $(this).parent().children('label').text();
+        let payload = {
+            user: user,
+            chatroomName: currentChatroom,
+        };
+        $.post("/chatroom/removeUser", payload);
+        console.log(user);
     });
 
     $(".btn-report").click(function() {
-        console.log($(this).parent().children('label').text());
+        let user = $(this).parent().children('label').text();
+        let payload = {
+            user: user,
+            chatroomName: currentChatroom,
+        };
+        $.post("/chatroom/report", payload);
+        console.log(user);
+    });
+}
+
+function updateUserList() {
+    if (currentChatroom === "") return;
+    let payload = {
+        username: username,
+        chatroomName: currentChatroom,
+    };
+    $.post("/chatroom/connectToChatroom", payload, function(data) {
+        data = JSON.parse(data);
+        loadUserListFromChatroomData(data);
     });
 }
 
@@ -293,7 +317,7 @@ function joinChatroom(chatroomName) {
 function handleWebsocketMessage(message) {
     console.log(message.data);
     if (message.data == "updateInvites") loadInvitedToList();
-    else if (message.data == "updateUsers") console.log("updateUsers");
+    else if (message.data == "updateUsers") updateUserList();
     else if (message.data == "updateMessages") loadMessages();
     else if (message.data == "updatePublicRooms") console.log("updatePublicRooms");
     else if (message.data == "connectNow") console.log("connectNow");

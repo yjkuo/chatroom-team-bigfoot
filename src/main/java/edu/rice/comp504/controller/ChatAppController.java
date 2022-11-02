@@ -77,7 +77,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/report", ((request, response) -> {
-            da.reportUser(request.queryParams("username"), request.queryParams("chatroomName"));
+            da.reportUser(request.queryParams("user"), request.queryParams("chatroomName"));
             return gson.toJson("reported user");
         }));
 
@@ -115,7 +115,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/removeUser", (request, response) -> {
-            da.banUser("username", "chatroomName");
+            da.banUser(request.queryParams("user"), request.queryParams("chatroomName"));
             return gson.toJson("remove user");
         });
     }
