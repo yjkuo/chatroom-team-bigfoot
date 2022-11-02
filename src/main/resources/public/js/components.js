@@ -66,7 +66,10 @@ export function rightMsgHtml (receiver, msg, id) {
     `;
 }
 
-export function leftMsgHtml (sender, receiver, msg, id) {
+export function leftMsgHtml (sender, receiver, msg, id, isAdmin) {
+    let deleteBtn = isAdmin ? `<div class="d-flex flex-column">
+                        <button class="btn btn-danger btn-sm delete-btn">Del</button>
+                    </div>`: `<div class="d-none"></div>`;
     return `
         <div class="container pb-3" id="msg-${id}">
         <div class="chat-message-left">
@@ -76,9 +79,7 @@ export function leftMsgHtml (sender, receiver, msg, id) {
                     <div class="fw-bold mb-1">${sender} to ${receiver}</div>
                     ${msg}
                 </div>
-                <div class="d-flex flex-column">
-                    <button class="btn btn-danger btn-sm delete-btn">Del</button>
-                </div> 
+                 ${deleteBtn}
             </div>
         </div>
         </div>

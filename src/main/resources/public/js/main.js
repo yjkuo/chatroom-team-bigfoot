@@ -8,7 +8,8 @@ const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.por
 let username = localStorage.getItem('username');
 
 let currentChatroom = "";
-
+let editMsgID = 0;
+let isAdmin = false;
 
 /**
  * Entry point into chat room
@@ -125,7 +126,7 @@ function loadMessages() {
         console.log(data);
         $('#div-msg-list').empty();
         data.forEach(message => {
-            let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content);
+            let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
         });
     });
@@ -152,6 +153,8 @@ function openChatroom(chatroomName) {
             var userHtml = userListElement(user, username === user, data.admin === user);
             $(userHtml).appendTo($('#div-user-list'));
         })
+
+        isAdmin = username === data.admin;
 
         $(".btn-ban").click(function() {
             console.log($(this).parent().children('label').text());
@@ -280,23 +283,6 @@ function joinChatroom(chatroomName) {
     });
 }
 
-function loadPublicRoomList() {
-    let payload = {
-        username: username
-    }
-    $.get("/chatroom/getPublicRoomList", payload, function(data) {
-        let chatroomNames = JSON.parse(data);
-        $('#div-public-room-list').empty();
-        chatroomNames.forEach(item => {
-            var html = publicRoomListElement(item);
-            $(html).appendTo($('#div-public-room-list'));
-        });
-        $(".btn-join-chatroom").click(function() {
-            console.log($(this).parent().children('label').text());
-            joinChatroom($(this).parent().children('label').text());
-        });
-    });
-}
 
 
 function handleWebsocketMessage(message) {
@@ -358,13 +344,13 @@ function deleteMsg(id) {
     $.post("/chatroom/deleteMessage", payload);
 }
 
-function convertMsgToHtml(msgId, sender, receiver, content) {
+function convertMsgToHtml(msgId, sender, receiver, content, isAdmin) {
     let msg;
     receiver = receiver === username ? "You" : receiver;
     if (sender == username) {
         msg = rightMsgHtml(receiver, content, msgId);
     } else {
-        msg = leftMsgHtml(sender, receiver, content, msgId);
+        msg = leftMsgHtml(sender, receiver, content, msgId, isAdmin);
     }
     return msg;
 }
