@@ -178,7 +178,7 @@ public abstract class AChatroom {
      */
     public void deleteMessage(int messageID) {
         this.messages.remove(messageID);
-        currentMessageID--;
+//        currentMessageID--;
     }
 
     /**

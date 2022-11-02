@@ -293,13 +293,12 @@ function handleWebsocketMessage(message) {
     console.log(message.data);
     if (message.data == "updateInvites") loadInvitedToList();
     else if (message.data == "updateUsers") console.log("updateUsers");
-    else if (message.data == "updateMessages") console.log("updateMessages");
+    else if (message.data == "updateMessages") loadMessages();
     else if (message.data == "updatePublicRooms") console.log("updatePublicRooms");
     else if (message.data == "connectNow") console.log("connectNow");
     else {
         let msg = JSON.parse(message.data);
         if (msg.chatRoomName == currentChatroom) {
-            console.log(msg)
             let msgHtml = convertMsgToHtml(msg.messageID, msg.sender, msg.receiver, msg.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
         }
@@ -334,10 +333,12 @@ function createChatRoom() {
 
 function editMsg(id, element) {
     if (editMsgID == 0) {
+        console.log("hereeee");
         let inputHtml = `<input type="text" id="in-edit"/>`;
         element.parent().parent().children().children('span').replaceWith(inputHtml);
         editMsgID = id;
     } else {
+        console.log("ggg");
         let content = $("#in-edit").val();
         let spanHtml = `<span>${content}</span>`;
         let payload = {
