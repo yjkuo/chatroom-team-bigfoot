@@ -41,11 +41,6 @@ window.onload = function() {
     });
     $("#btn-send").click(() => sendMsg($("#txt-message").val()));
 
-    $('.lst-rooms').on('click', function() {
-        let $this = $(this); 
-        $("#room-name").html($this.data('alias'));
-    })
-
     $("#btn-logout").click(() => logout());
 
     $('#form-create').submit(function(e) {
@@ -125,13 +120,22 @@ function loadMessages() {
     };
     $.get("/chatroom/getMessages", payload, function(data) {
         data = JSON.parse(data);
-        console.log(data);
         $('#div-msg-list').empty();
         data.forEach(message => {
             let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
-            let chat = $('.chatroom');
-            chat.scrollTop(chat.prop("scrollHeight"));
+            $('.chatroom').scrollTop($('.chatroom').scrollHeight);
+        });
+    });
+}
+
+function loadUserList() {
+    $('#div-user-list').empty();
+    $.post("chatroom/userList", {chatroomName: currentChatroom}, function(data) {
+        data = JSON.parse(data);
+        data.forEach(user => {
+            var userHtml = userListElement(user, username === user, false);
+            $(userHtml).appendTo($('#div-user-list'));
         });
     });
 }
@@ -185,7 +189,6 @@ function openChatroom(chatroomName) {
     };
     $.post("/chatroom/connectToChatroom", payload, function(data) {
         data = JSON.parse(data);
-        console.log(data);
         if (data.type === "public") {
             $('#div-invite-box').hide();
         }
@@ -385,19 +388,19 @@ function deleteMsg(id) {
 }
 
 function leaveAllChatRooms() {
-    let payload = {
-        username: username
-    }
-    $.get("/chatroom/getChatroomList", payload, function(data) {
-        $('#div-chatrooms-list').empty();
-        let chatroomNames = JSON.parse(data);
-        chatroomNames.forEach(item => {
-            $.post("/chatroom/leaveChatroom", {
-                username: username,
-                chatroomName: item
-            });
-        });
-    });
+    // let payload = {
+    //     username: username
+    // }
+    // $.get("/chatroom/getChatroomList", payload, function(data) {
+    //     $('#div-chatrooms-list').empty();
+    //     let chatroomNames = JSON.parse(data);
+    //     chatroomNames.forEach(item => {
+    //         $.post("/chatroom/leaveChatroom", {
+    //             username: username,
+    //             chatroomName: item
+    //         });
+    //     });
+    // });
 }
 
 function leaveChatRoom(roomName) {
@@ -405,9 +408,13 @@ function leaveChatRoom(roomName) {
         username: username,
         chatroomName: currentChatroom
     }
-    $.post("/chatroom/leaveChatroom", payload);
+    $.post("/chatroom/leaveChatroom", payload, function(data) {
+        loadPublicRoomList();
+        loadChatRoomList();
+    });
     currentChatroom = "";
-    loadChatRoomList();
+
+
 }
 
 function convertMsgToHtml(msgId, sender, receiver, content, isAdmin) {

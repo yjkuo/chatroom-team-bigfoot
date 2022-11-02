@@ -181,6 +181,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         }
         cs.removeUserFromChatroom(chatroomName, username);
         us.removeChatRoomFromList(username, chatroomName);
+
         if (cs.getChatRoom(chatroomName).getNumberOfUsers() == 0) {
             cs.removeChatRoom(chatroomName);
         } else {
