@@ -185,9 +185,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
             if (Objects.equals(cs.getAdmin(chatroomName), username)) {
                 cs.setAdmin(chatroomName, cs.getUserList(chatroomName).get(0));
             }
-            ms.sendMessage("normal", "System", "Everyone", msg, chatroomName);
+            ms.sendMessage("", "System", "Everyone", msg, chatroomName);
             ms.promptUsersToUpdateUserList(chatroomName);
-            ms.promptUsersToUpdateMessages(chatroomName);
         }
     }
 
@@ -196,18 +195,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         for (Map.Entry<String, AChatroom> chatroom: cs.getAllChatrooms().entrySet()) {
             for (String roomname: myChatRooms) {
                 if (Objects.equals(roomname, chatroom.getValue().getRoomName())) {
-                    try {
-                        AUser senderObject = us.getUsers(username);
-                        String warningContent = "You have been banned from all rooms.";
-                        AMessage warningMessage = MessageFactory.makeFactory().makeMessage(chatroom.getValue().getCurrentMessageID(), chatroom.getKey(), warningContent, "System", username, "direct");
-                        Session userSession = us.getUserSession(username);
-                        if (userSession != null) {
-                            userSession.getRemote().sendString(gson.toJson(warningMessage));
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    this.leaveRoom(username, roomname, 2);
+                    String warningContent = "You have been banned from all rooms.";
+                    ms.sendMessage("", "System", username, warningContent, chatroom.getKey());
+                    this.leaveRoom(username, roomname, 1);
                     break;
                 }
             }

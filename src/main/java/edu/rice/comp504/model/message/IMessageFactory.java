@@ -4,7 +4,6 @@ package edu.rice.comp504.model.message;
  * A factory that will make messages.
  */
 public interface IMessageFactory {
-
     /**
      * Make a message.
      * @param messageID unique id of message
