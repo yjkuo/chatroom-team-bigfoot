@@ -1,6 +1,6 @@
 'use strict';
 
-import {chatroomsListElement, userListElement} from './components.js';
+import {chatroomsListElement, userListElement, leftMsgHtml, rightMsgHtml} from './components.js';
 
 const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chatapp");
 // const webSocket = new WebSocket("wss://" + "alg23-ex7-chat.herokuapp.com" + "/chatapp");
@@ -127,6 +127,11 @@ function chatRoomOpen(chatroomName) {
         $.get("/chatroom/getMessages", payload, function(data) {
             data = JSON.parse(data);
             console.log(data);
+            $('#div-msg-list').empty();
+            data.forEach(message => {
+                let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content);
+                $(msgHtml).appendTo($('#div-msg-list'));
+            });
         });
 
         openChatroom = chatroomName;
@@ -173,4 +178,15 @@ function createChatRoom() {
     $.post("/chatroom/createChatroom", payload, function(data) {
         console.log(data);
     }, "json");
+}
+
+function convertMsgToHtml(msgId, sender, receiver, content) {
+    let msg;
+    receiver = receiver === username ? "You" : receiver;
+    if (sender == username) {
+        msg = rightMsgHtml(receiver, content);
+    } else {
+        msg = leftMsgHtml(sender, receiver, content);
+    }
+    return msg;
 }
