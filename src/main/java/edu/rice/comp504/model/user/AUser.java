@@ -1,5 +1,7 @@
 package edu.rice.comp504.model.user;
 
+import edu.rice.comp504.model.chatroom.AChatroom;
+
 import java.util.ArrayList;
 
 /**
@@ -166,5 +168,20 @@ public abstract class AUser {
      */
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    /**
+     * Get the list of invited rooms
+     */
+    public ArrayList<String> getInvitedRooms() {
+        return invitedRooms;
+    }
+
+    /**
+     * Add to the list of invited rooms
+     */
+    public ArrayList<String> addRoomToInvitedList(String chatroomName) {
+        invitedRooms.add(chatroomName);
+        return invitedRooms;
     }
 }

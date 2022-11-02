@@ -98,8 +98,8 @@ public class UserStore implements IUserStore{
     }
 
     @Override
-    public void invitedToJoin(String chatroomName, String username) {
-
+    public ArrayList<String> invitedToJoin(String chatroomName, String username) {
+        return userList.get(username).addRoomToInvitedList(chatroomName);
     }
 
     @Override
@@ -122,5 +122,9 @@ public class UserStore implements IUserStore{
         if (user != null) {
             user.setOpenChatroom(chatroomName);
         }
+    }
+
+    public ArrayList<String> getInvitedRoomForUser(String username) {
+        return userList.get(username).getInvitedRooms();
     }
 }

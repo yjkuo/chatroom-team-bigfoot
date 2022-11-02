@@ -42,6 +42,14 @@ public class ChatAppController {
             return gson.toJson(da.getChatRoomForUser(request.queryParams("username")));
         });
 
+        get("/chatroom/getInvitedRoomList", (request, response) -> {
+            return gson.toJson(da.getChatRoomForUser(request.queryParams("username")));
+        });
+
+        get("/chatroom/getPublicRoomList", (request, response) -> {
+            return gson.toJson(da.getAllPublicChatRooms(request.queryParams("username")));
+        });
+
         post("/chatroom/createChatroom", (request, response) -> {
             da.createChatRoom("username", "chatroomName", "public", 5);
             return gson.toJson("create chatroom");

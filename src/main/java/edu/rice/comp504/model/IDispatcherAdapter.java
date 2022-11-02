@@ -80,7 +80,7 @@ public interface IDispatcherAdapter {
      * @param chatroomName String chat room name
      * @return the chatroom or null
      */
-    AChatroom inviteToJoin(String username, String chatroomName);
+    ArrayList<String> inviteToJoin(String username, String chatroomName);
 
     /**
      * Return a list of users in the chat room.
@@ -99,7 +99,7 @@ public interface IDispatcherAdapter {
      * Return a list of all public chat rooms.
      * @return List of public chatrooms.
      */
-    ArrayList<AChatroom> getAllPublicChatRooms();
+    ArrayList<AChatroom> getAllPublicChatRooms(String username);
 
     /**
      * Delete a user from the chat room.
