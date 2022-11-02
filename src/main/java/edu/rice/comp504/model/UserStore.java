@@ -123,7 +123,9 @@ public class UserStore implements IUserStore{
             return false;
         }
 
-        if (receiverUser.getMyChatRooms().contains(chatroomName) || receiverUser.getInvitedRooms().contains(chatroomName)) {
+        if (receiverUser.getMyChatRooms().contains(chatroomName)
+                || receiverUser.getInvitedRooms().contains(chatroomName)
+                || receiverUser.getBannedRooms().contains(chatroomName)) {
             return true;
         }
 

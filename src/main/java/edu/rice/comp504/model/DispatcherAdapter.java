@@ -92,6 +92,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         AChatroom chatroom = cs.createChatRoom(chatroomName, type, username, size);
         if (!chatroom.getRoomName().equals("")) {
             us.addChatRoomToList(username, chatroomName);
+            us.promptUsersToUpdatePublicRooms();
         }
         return chatroom;
     }

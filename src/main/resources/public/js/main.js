@@ -319,7 +319,7 @@ function handleWebsocketMessage(message) {
     if (message.data == "updateInvites") loadInvitedToList();
     else if (message.data == "updateUsers") updateUserList();
     else if (message.data == "updateMessages") loadMessages();
-    else if (message.data == "updatePublicRooms") console.log("updatePublicRooms");
+    else if (message.data == "updatePublicRooms") loadPublicRoomList();
     else if (message.data == "connectNow") console.log("connectNow");
     else {
         let msg = JSON.parse(message.data);
