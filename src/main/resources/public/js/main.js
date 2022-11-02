@@ -8,7 +8,6 @@ const webSocket = new WebSocket("ws://" + location.hostname + ":" + location.por
 let username = localStorage.getItem('username');
 
 let currentChatroom = "";
-let editMsgID = 0;
 
 
 /**
@@ -164,6 +163,42 @@ function loadChatRoomList() {
         });
         $(".btn-open-chatroom").click(function() {
             openChatroom($(this).parent().children('label').text());
+        });
+    });
+}
+
+function joinChatroom(chatroomName) {
+    let payload = {
+        username: username,
+        chatroomName: chatroomName,
+    };
+    $.post("/chatroom/joinChatroom", payload, function(data) {
+        data = JSON.parse(data);
+        if (data.roomName === "") {
+            $('#alert-public-room-full').show();
+        }
+        else {
+            loadPublicRoomList();
+            loadChatRoomList();
+            $('#alert-public-room-full').hide();
+        }
+    });
+}
+
+function loadPublicRoomList() {
+    let payload = {
+        username: username
+    }
+    $.get("/chatroom/getPublicRoomList", payload, function(data) {
+        let chatroomNames = JSON.parse(data);
+        $('#div-public-room-list').empty();
+        chatroomNames.forEach(item => {
+            var html = publicRoomListElement(item);
+            $(html).appendTo($('#div-public-room-list'));
+        });
+        $(".btn-join-chatroom").click(function() {
+            console.log($(this).parent().children('label').text());
+            joinChatroom($(this).parent().children('label').text());
         });
     });
 }
