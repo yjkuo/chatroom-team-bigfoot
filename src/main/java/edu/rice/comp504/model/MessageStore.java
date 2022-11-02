@@ -67,18 +67,10 @@ public class MessageStore implements IMessageStore{
         }
         if (content != null) {
             if (content.contains("hate speech")) {
-                try {
-                    AUser senderObject = us.getUsers(sender);
-                    senderObject.setNumOfHateSpeech(senderObject.getNumOfHateSpeech() + 1);
-                    String warningContent = "Your speech contains hateful speech. If you tried to send it 3 times, you will be removed from all rooms.";
-                    AMessage warningMessage = MessageFactory.makeFactory().makeMessage(chatroom.getCurrentMessageID(), chatroomName, warningContent, "System", sender, "direct");
-                    Session userSession = us.getUserSession(sender);
-                    if (userSession != null) {
-                        userSession.getRemote().sendString(gson.toJson(warningMessage));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                AUser senderObject = us.getUsers(sender);
+                senderObject.setNumOfHateSpeech(senderObject.getNumOfHateSpeech() + 1);
+                String warningContent = "Your speech contains hateful speech. If you tried to send it 3 times, you will be removed from all rooms.";
+                sendMessage("", "System", sender, warningContent, chatroomName);
             }
         }
     }
