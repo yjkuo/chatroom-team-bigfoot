@@ -136,7 +136,25 @@ function loadMessages() {
     });
 }
 
+function loadUserListFromChatroomData(chatroomData) {
+    let data = chatroomData;
+    $('#div-user-list').empty();
+    data.users.forEach(user => {
+        var userHtml = userListElement(username, user, data.admin);
+        $(userHtml).appendTo($('#div-user-list'));
+    })
+
+    $(".btn-ban").click(function() {
+        console.log($(this).parent().children('label').text());
+    });
+
+    $(".btn-report").click(function() {
+        console.log($(this).parent().children('label').text());
+    });
+}
+
 function openChatroom(chatroomName) {
+    $(".chat-element").show();
     let payload = {
         username: username,
         chatroomName: chatroomName,
@@ -151,28 +169,11 @@ function openChatroom(chatroomName) {
 
         currentChatroom = chatroomName;
         $("#room-name").text(chatroomName);
-
-        $('#div-user-list').empty();
-        data.users.forEach(user => {
-            var userHtml = userListElement(user, username === user, data.admin === user);
-            $(userHtml).appendTo($('#div-user-list'));
-        })
-
         isAdmin = username === data.admin;
 
-        $(".btn-ban").click(function() {
-            console.log($(this).parent().children('label').text());
-        });
-
-        $(".btn-report").click(function() {
-            console.log($(this).parent().children('label').text());
-        });
-
+        loadUserListFromChatroomData(data);
 
         loadMessages();
-
-
-        $(".chat-element").show();
         loadChatRoomList();
     });
 }
@@ -333,12 +334,10 @@ function createChatRoom() {
 
 function editMsg(id, element) {
     if (editMsgID == 0) {
-        console.log("hereeee");
         let inputHtml = `<input type="text" id="in-edit"/>`;
         element.parent().parent().children().children('span').replaceWith(inputHtml);
         editMsgID = id;
     } else {
-        console.log("ggg");
         let content = $("#in-edit").val();
         let spanHtml = `<span>${content}</span>`;
         let payload = {

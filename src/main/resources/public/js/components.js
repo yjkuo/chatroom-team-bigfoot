@@ -17,28 +17,35 @@ export function chatroomsListElement(chatroomName, isOpen) {
     return html
 }
 
-export function userListElement(username, isUser, isAdmin) {
-    var html;
-    if (isAdmin) html = `
+export function userListElement(currentUser, username, admin) {
+    if (username == admin) return `
             <li class="list-group-item">
                 <label style="color:red">${username} (Admin)</label>
                 <button class="btn btn-warning btn-sm float-end btn-ban" style="display: none">Ban</button>
             </li>
         `
-    else {
-        if (isUser) html = `
-             <li class="list-group-item">
+    var html;
+    if (currentUser == admin)
+        return `
+            <li class="list-group-item">
                 <label>${username}</label>
-                <button class="btn btn-warning btn-sm float-end btn-report" style="display: none">Report</button>
+                <button class="btn btn-warning btn-sm float-end btn-ban">Ban</button>
             </li>
-        `
-        else html = `
-             <li class="list-group-item">
-                <label>${username}</label>
-                <button class="btn btn-warning btn-sm float-end btn-report">Report</button>
-            </li>
-        `
-    }
+            `
+
+    if (username == currentUser) html = `
+         <li class="list-group-item">
+            <label>${username}</label>
+            <button class="btn btn-warning btn-sm float-end btn-report" style="display: none">Report</button>
+        </li>
+    `
+    else html = `
+         <li class="list-group-item">
+            <label>${username}</label>
+            <button class="btn btn-warning btn-sm float-end btn-report">Report</button>
+        </li>
+    `
+
     return html;
 }
 
