@@ -170,13 +170,21 @@ function logout() {
 function createChatRoom() {
     let payload = {
         username: username,
-        charRoomName: $('#create-roomname').val(),
-        size: $('#create-roomname').val(),
+        chatroomName: $('#create-roomname').val(),
+        size: $('#create-roomsize').val(),
         type: $('input[name=roomTypeRadio]:checked', '#form-create').val()
     };
 
     $.post("/chatroom/createChatroom", payload, function(data) {
-        console.log(data);
+        if (data.roomName !== "") {
+            $('#alert-room-create').hide();
+            $('#create-roomname').val("");
+            $('#create-roomsize').val("");
+            loadChatRoomList();
+        }
+        else {
+            $('#alert-room-create').show();
+        }
     }, "json");
 }
 

@@ -30,7 +30,6 @@ function signUp() {
         interests: interests
     };
     $.post("/register", payload, function(data) {
-        console.log(data.username);
         if (data.username !== "") {
             localStorage.setItem('username', payload.username);
             window.location.href = "/main.html";
