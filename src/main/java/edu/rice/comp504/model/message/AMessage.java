@@ -10,6 +10,7 @@ public abstract class AMessage {
     private final String chatRoomName;
     private String content;
     private final String sender;
+    private String receiver;
     private final String type;
     private final Date timestamp;
 
@@ -21,11 +22,12 @@ public abstract class AMessage {
      * @param sender sender of the message
      * @param type type of the message (normal or direct)
      */
-    public AMessage(int messageID, String chatRoomName, String content, String sender, String type) {
+    public AMessage(int messageID, String chatRoomName, String content, String sender, String receiver, String type) {
         this.messageID = messageID;
         this.chatRoomName = chatRoomName;
         this.content = content;
         this.sender = sender;
+        this.receiver = receiver;
         this.type = type;
         this.timestamp = new Date();
     }
@@ -84,5 +86,9 @@ public abstract class AMessage {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getReceiver() {
+        return receiver;
     }
 }

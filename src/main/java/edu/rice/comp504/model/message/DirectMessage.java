@@ -3,14 +3,14 @@ package edu.rice.comp504.model.message;
 import java.util.Date;
 
 public class DirectMessage extends AMessage {
-    private String receiver;
+//    private String receiver;
 
     public DirectMessage(int messageID, String chatRoomName, String content, String sender, String receiver, String type, Date timestamp) {
-        super(messageID, chatRoomName, content, sender, type);
-        this.receiver = receiver;
+        super(messageID, chatRoomName, content, sender, receiver, type);
+//        this.receiver = receiver;
     }
 
-    public String getReceiver() {
-        return receiver;
-    }
+//    public String getReceiver() {
+//        return receiver;
+//    }
 }

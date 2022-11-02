@@ -76,6 +76,14 @@ public abstract class AChatroom {
     }
 
     /**
+     * Get the next unique messageID
+     * @return current MessageID
+     */
+    public int getCurrentMessageID() {
+        return currentMessageID;
+    }
+
+    /**
      * Set the unique admin of chatroom.
      * @param admin the admin user.
      */
@@ -161,16 +169,23 @@ public abstract class AChatroom {
         int joinedTime = this.userJoinedTime.get(username);
         //check timestamp
         for (Map.Entry<Integer, AMessage> entry: this.messages.entrySet()) {
-            if (entry.getValue().getMessageID() > joinedTime) {
-                //check whether direct message
-                if (Objects.equals(entry.getValue().getType(), "direct")) {
-                    if (Objects.equals(((DirectMessage) entry.getValue()).getReceiver(), username) ||
-                        Objects.equals(entry.getValue().getSender(), username)) {
-                        result.add(entry.getValue());
-                    }
-                } else {
-                    result.add(entry.getValue());
-                }
+//            if (entry.getValue().getMessageID() >= joinedTime) {
+//                //check whether direct message
+//                if (Objects.equals(entry.getValue().getType(), "direct")) {
+//                    if (Objects.equals(((DirectMessage) entry.getValue()).getReceiver(), username) ||
+//                        Objects.equals(entry.getValue().getSender(), username)) {
+//                        result.add(entry.getValue());
+//                    }
+//                } else {
+//                    result.add(entry.getValue());
+//                }
+//            }
+            if (entry.getValue().getMessageID() >= joinedTime
+                    &&
+                    (entry.getValue().getReceiver().equals("Everyone")
+                    || entry.getValue().getReceiver().equals(username)
+                    || entry.getValue().getSender().equals(username))) {
+                result.add(entry.getValue());
             }
         }
         return result;

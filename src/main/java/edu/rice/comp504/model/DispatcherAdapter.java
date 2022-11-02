@@ -24,8 +24,18 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         us = UserStore.makeStore();
         String[] interests = {"Music"};
         AUser firstUser = us.register("Sky", "a", 12, "Rice University", interests);
+        AUser secondUser = us.register("Ray", "a", 18, "Rice University", interests);
+        AUser thirdUser = us.register("Godzilla", "a", 28, "Rice University", interests);
         createChatRoom("Sky", "Owl Games", "public", 20);
+        createChatRoom("Ray", "Ray rays", "public", 3);
         createChatRoom("Sky", "Secret Service", "private", 10);
+        joinChatRoom("Ray", "Owl Games");
+        joinChatRoom("Godzilla", "Owl Games");
+
+        sendMessage("Hello Everyone^^^", "", "Sky", "Everyone", "Owl Games");
+        sendMessage("Good to meet you all", "", "Sky", "Everyone", "Owl Games");
+        sendMessage("Hello", "", "Ray", "Everyone", "Owl Games");
+        sendMessage("Hello Sky", "", "Godzilla", "Sky", "Owl Games");
     }
 
     /**
@@ -80,7 +90,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     @Override
     public AChatroom joinChatRoom(String username, String chatroomName) {
         AChatroom result = cs.addUserToChatroom(chatroomName, username);
-        us.addChatRoomToList(username, chatroomName);
+        if (!result.getRoomName().equals("")) {
+            us.addChatRoomToList(username, chatroomName);
+        }
         return result;
     }
 
@@ -138,7 +150,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public boolean sendMessage(String content, String type, String sender, String receiver, String chatroomName) {
-        return false;
+        ms.sendMessage(type, sender, receiver, content, chatroomName);
+        return true;
     }
 
     @Override

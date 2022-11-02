@@ -85,12 +85,11 @@ public class ChatAppController {
         });
 
         get("/chatroom/getMessages", (request, response) -> {
-            da.getMessageForUser("username", "chatroomName");
-            return gson.toJson("get messages");
+            return gson.toJson(da.getMessageForUser(request.queryParams("username"), request.queryParams("chatroomName")));
         });
 
         post("/chatroom/sendMessage", (request, response) -> {
-            da.sendMessage("content", "direct", "sender", "receiver", "chatroomName");
+            da.sendMessage(request.queryParams("content"), "", request.queryParams("sender"), request.queryParams("receiver"), request.queryParams("chatroomName"));
             return gson.toJson("send message");
         });
 

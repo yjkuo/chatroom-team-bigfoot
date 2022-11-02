@@ -127,4 +127,8 @@ public class UserStore implements IUserStore{
     public ArrayList<String> getInvitedRoomForUser(String username) {
         return userList.get(username).getInvitedRooms();
     }
+
+    public Session getUserSession(String username) {
+        return userSessionMap.get(username);
+    }
 }

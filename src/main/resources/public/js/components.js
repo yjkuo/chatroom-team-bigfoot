@@ -21,7 +21,7 @@ export function userListElement(username, isUser, isAdmin) {
     var html;
     if (isAdmin) html = `
             <li class="list-group-item">
-                <label style="color:red">${username}</label>
+                <label style="color:red">${username} (Admin)</label>
                 <button class="btn btn-warning btn-sm float-end btn-ban" style="display: none">Ban</button>
             </li>
         `

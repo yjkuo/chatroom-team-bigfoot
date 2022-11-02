@@ -23,7 +23,7 @@ window.onload = function() {
     loadChatRoomList();
 
     webSocket.onclose = () => alert("WebSocket connection closed");
-    // webSocket.onmessage = (msg) => updateChatRoom(msg);
+    webSocket.onmessage = (msg) => handleWebsocketMessage(msg);
 
     $(".chatroom").scrollTop($(".chatroom")[0].scrollHeight);
 
@@ -46,6 +46,15 @@ window.onload = function() {
 
 function sendMsg(msg) {
     if (msg != '') {
+        let sendto = $('#send-to-list').find(":selected").val();
+        let payload = {
+            sender: username,
+            chatroomName: openChatroom,
+            content: msg,
+            receiver: sendto
+        };
+        $.post("/chatroom/sendMessage", payload, function(data) {});
+
         // check if msg have url
         let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
         if (msg.match(urlRegex)) {
@@ -53,7 +62,6 @@ function sendMsg(msg) {
             msg = msg.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
         }
 
-        let sendto = $('#send-to-list').find(":selected").val();
         var msgHtml = `
                         <div class="container pb-3">
                             <div class="chat-message-right">
@@ -111,6 +119,11 @@ function chatRoomOpen(chatroomName) {
             console.log($(this).parent().children('label').text());
         });
 
+        $.get("/chatroom/getMessages", payload, function(data) {
+            data = JSON.parse(data);
+            console.log(data);
+        });
+
         openChatroom = chatroomName;
         $(".chat-element").show();
         loadChatRoomList();
@@ -133,6 +146,10 @@ function loadChatRoomList() {
             chatRoomOpen($(this).parent().children('label').text());
         });
     });
+}
+
+function handleWebsocketMessage(message) {
+    console.log(message.data);
 }
 
 function logout() {

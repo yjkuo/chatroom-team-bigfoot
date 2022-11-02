@@ -81,6 +81,9 @@ public class ChatroomStore implements IChatroomStore{
             if (chatroom.getNumberOfUsers() < chatroom.getSize()) {
                 chatroom.addUser(username);
             }
+            else {
+                return new NullChatroom();
+            }
         }
         return chatroom;
     }
