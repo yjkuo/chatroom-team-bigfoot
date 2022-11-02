@@ -42,6 +42,11 @@ window.onload = function() {
     })
 
     $("#btn-logout").click(() => logout());
+
+    $('#form-create').submit(function(e) {
+        e.preventDefault();
+        createChatRoom();
+    })
 };
 
 function sendMsg(msg) {
@@ -138,4 +143,17 @@ function loadChatRoomList() {
 function logout() {
     localStorage.removeItem('username');
     window.location.href = "/";
+}
+
+function createChatRoom() {
+    let payload = {
+        username: username,
+        charRoomName: $('#create-roomname').val(),
+        size: $('#create-roomname').val(),
+        type: $('input[name=roomTypeRadio]:checked', '#form-create').val()
+    };
+
+    $.post("/chatroom/createChatroom", payload, function(data) {
+        console.log(data);
+    }, "json");
 }

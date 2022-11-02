@@ -51,7 +51,11 @@ public class ChatAppController {
         });
 
         post("/chatroom/createChatroom", (request, response) -> {
-            da.createChatRoom("username", "chatroomName", "public", 5);
+            da.createChatRoom(request.queryParams("username"),
+                        request.queryParams("chatRoomName"),
+                        request.queryParams("type"),
+                        Integer.parseInt(request.queryParams("size"))
+            );
             return gson.toJson("create chatroom");
         });
 
