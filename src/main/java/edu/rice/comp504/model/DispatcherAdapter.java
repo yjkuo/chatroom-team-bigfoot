@@ -1,20 +1,25 @@
 package edu.rice.comp504.model;
 
+import com.google.gson.Gson;
 import edu.rice.comp504.model.chatroom.AChatroom;
 import edu.rice.comp504.model.message.AMessage;
+import edu.rice.comp504.model.message.MessageFactory;
 import edu.rice.comp504.model.user.AUser;
 import edu.rice.comp504.model.user.User;
 import org.eclipse.jetty.websocket.api.Session;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DispatcherAdapter implements IDispatcherAdapter {
-    ChatroomStore cs ;
-    MessageStore ms;
-    UserStore us;
+    private ChatroomStore cs ;
+    private MessageStore ms;
+    private UserStore us;
+    private Gson gson;
 
     private static DispatcherAdapter ONLY;
 
@@ -22,6 +27,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         cs = ChatroomStore.makeStore();
         ms = MessageStore.makeStore();
         us = UserStore.makeStore();
+        gson = new Gson();
         String[] interests = {"Music"};
         AUser firstUser = us.register("Sky", "a", 12, "Rice University", interests);
         AUser secondUser = us.register("Ray", "a", 18, "Rice University", interests);
@@ -95,6 +101,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         AChatroom result = cs.addUserToChatroom(chatroomName, username);
         if (!result.getRoomName().equals("")) {
             us.addChatRoomToList(username, chatroomName);
+            ms.promptUsersToUpdateUserList(chatroomName);
         }
         return result;
     }
@@ -121,24 +128,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public boolean deleteUser(String username, String chatroomName) {
-        cs.removeUserFromChatroom(chatroomName, username);
-        us.removeChatRoomFromList(username, chatroomName);
+        this.leaveRoom(username, chatroomName, 1);
         return true;
-    }
-
-    @Override
-    public void warnUser(String username, String chatroomName) {
-
-    }
-
-    @Override
-    public boolean banUser(String username, String chatroomName) {
-        return false;
-    }
-
-    @Override
-    public boolean bannedFromAll(String username) {
-        return false;
     }
 
     @Override
@@ -173,9 +164,54 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     @Override
-    public void leaveRoom(String username, String chatroomName) {
+    public void leaveRoom(String username, String chatroomName, int reason) {
+        String msg = null;
+        AUser user = us.getUsers(username);
+        switch (reason) {
+            case 0 : // voluntarily left
+                msg = "user " + username + " leaves room voluntarily.";
+                break;
+            case 1: // being baned
+                msg = "user " + username + " leaves room because of being baned.";
+                break;
+            default:
+                break;
+        }
         cs.removeUserFromChatroom(chatroomName, username);
         us.removeChatRoomFromList(username, chatroomName);
+        if (cs.getChatRoom(chatroomName).getNumberOfUsers() == 0) {
+            cs.removeChatRoom(chatroomName);
+        } else {
+            if (Objects.equals(cs.getAdmin(chatroomName), username)) {
+                cs.setAdmin(chatroomName, cs.getUserList(chatroomName).get(0));
+            }
+            ms.sendMessage("normal", "System", "Everyone", msg, chatroomName);
+            ms.promptUsersToUpdateUserList(chatroomName);
+            ms.promptUsersToUpdateMessages(chatroomName);
+        }
+    }
+
+    public void banAll(String username) {
+        ArrayList<String> myChatRooms = us.getChatRoomForUser(username);
+        for (Map.Entry<String, AChatroom> chatroom: cs.getAllChatrooms().entrySet()) {
+            for (String roomname: myChatRooms) {
+                if (Objects.equals(roomname, chatroom.getValue().getRoomName())) {
+                    try {
+                        AUser senderObject = us.getUsers(username);
+                        String warningContent = "You have been banned from all rooms.";
+                        AMessage warningMessage = MessageFactory.makeFactory().makeMessage(chatroom.getValue().getCurrentMessageID(), chatroom.getKey(), warningContent, "System", username, "direct");
+                        Session userSession = us.getUserSession(username);
+                        if (userSession != null) {
+                            userSession.getRemote().sendString(gson.toJson(warningMessage));
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    this.leaveRoom(username, roomname, 2);
+                    break;
+                }
+            }
+        }
     }
 
     public ArrayList<String> getInvitedRoomForUser(String username) {

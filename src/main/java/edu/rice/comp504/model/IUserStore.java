@@ -89,18 +89,5 @@ public interface IUserStore {
      * Return a list of all users.
      * @return list of all users
      */
-    List<User> getAllUsers();
-
-    /**
-     * Warn the user of hateful speech.
-     * @param username username of warned user
-     */
-    void warnUser(String username);
-
-    /**
-     * Ban the user from all chatrooms.
-     * @param username username of banned user
-     * @return the success or failure to perform this operation
-     */
-    boolean banUserFromAll(String username);
+    AUser getUsers(String username);
 }

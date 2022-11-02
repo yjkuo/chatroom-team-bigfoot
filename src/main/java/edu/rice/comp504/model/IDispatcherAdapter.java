@@ -110,28 +110,6 @@ public interface IDispatcherAdapter {
     boolean deleteUser(String username, String chatroomName);
 
     /**
-     * Warn the user of hate speech.
-     * @param username String username to be warned.
-     * @param chatroomName String chatroom name of the room in which message was sent.
-     */
-    void warnUser(String username, String chatroomName);
-
-    /**
-     * Ban the user from a specific room.
-     * @param username String username to be banned
-     * @param chatroomName String chatroom from which the user will be banned.
-     * @return Success or failure to ban the user
-     */
-    boolean banUser(String username, String chatroomName);
-
-    /**
-     * Ban the user from all rooms.
-     * @param username String username to be banned
-     * @return Success or failure to delete the user
-     */
-    boolean bannedFromAll(String username);
-
-    /**
      * Return the admin of the room.
      * @param chatroomName String chatroom to be checked.
      * @return username of the admin
@@ -184,5 +162,5 @@ public interface IDispatcherAdapter {
      * @param username String username of the user that will leave the room
      * @param chatroomName String chat room name from which the user will leave
      */
-    void leaveRoom(String username, String chatroomName);
+    void leaveRoom(String username, String chatroomName, int reason);
 }

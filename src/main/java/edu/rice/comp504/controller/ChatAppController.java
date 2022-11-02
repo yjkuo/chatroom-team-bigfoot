@@ -67,7 +67,7 @@ public class ChatAppController {
         });
 
         post("/chatroom/leaveChatroom", (request, response) -> {
-            da.leaveRoom(request.queryParams("username"), request.queryParams("chatroomName"));
+            da.leaveRoom(request.queryParams("username"), request.queryParams("chatroomName"), 0);
             return gson.toJson("leave chatroom");
         });
 
@@ -102,11 +102,6 @@ public class ChatAppController {
         post("/chatroom/deleteMessage", (request, response) -> {
             da.deleteMessage(Integer.parseInt(request.queryParams("id")), request.queryParams("chatroomName"));
             return gson.toJson("delete message");
-        });
-
-        post("/chatroom/warnUser", (request, response) -> {
-            da.warnUser("username", "chatroomName");
-            return gson.toJson("warn user");
         });
 
         post("/chatroom/removeUser", (request, response) -> {

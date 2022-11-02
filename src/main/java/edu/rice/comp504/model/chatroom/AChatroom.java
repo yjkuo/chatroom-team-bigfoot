@@ -20,7 +20,6 @@ public abstract class AChatroom {
     private int size;
     private int numberOfUsers;
     private ArrayList<String> users;
-    private ArrayList<String> bans;
     private Map<Integer, AMessage> messages;
     private int currentMessageID;
     private Map<String, Integer> userJoinedTime;
@@ -38,7 +37,6 @@ public abstract class AChatroom {
         this.numberOfUsers = 0;
         this.currentMessageID = 1;
         this.users = new ArrayList<>();
-        this.bans = new ArrayList<>();
         this.messages = new ConcurrentHashMap<>();
         this.userJoinedTime = new ConcurrentHashMap<>();
     }
@@ -131,32 +129,7 @@ public abstract class AChatroom {
      */
     public void removeUser(String username) {
         users.remove(username);
-    }
-
-    /**
-     * Get the list of banned users in the chatroom.
-     * @return list of banned users
-     */
-    public ArrayList<String> getBans() {
-        return bans;
-    }
-
-    /**
-     * Add a user to the banned user list.
-     * @param username username of the user that will be banned
-     */
-    public void addBans(String username) {
-        bans.add(username);
-    }
-
-    /**
-     * Remove a user from the ban list.
-     * @param username username of the user that will be unbanned
-     */
-    public void removeBans(String username) {
-        if (bans.contains(username)) {
-            this.bans.remove(username);
-        }
+        numberOfUsers--;
     }
 
     /**

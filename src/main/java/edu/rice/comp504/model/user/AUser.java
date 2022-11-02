@@ -1,8 +1,12 @@
 package edu.rice.comp504.model.user;
 
+import edu.rice.comp504.model.ChatroomStore;
+import edu.rice.comp504.model.DispatcherAdapter;
 import edu.rice.comp504.model.chatroom.AChatroom;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * This class represents a single user within the app.
@@ -155,6 +159,10 @@ public abstract class AUser {
      */
     public void setNumOfHateSpeech(int numOfHateSpeech) {
         this.numOfHateSpeech = numOfHateSpeech;
+        if (numOfHateSpeech == 3) {
+            DispatcherAdapter.makeDispatcher().banAll(this.username);
+            this.setStatus(2);
+        }
     }
 
     /**
