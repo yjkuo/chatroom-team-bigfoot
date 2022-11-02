@@ -42,9 +42,9 @@ public class MessageStore implements IMessageStore{
         if (receiver.equals("Everyone")) {
             ArrayList<String> chatroomUsers = chatroom.getUsers();
             for (String chatroomUser: chatroomUsers) {
-                if (chatroomUser.equals(sender)) {
-                    continue;
-                }
+//                if (chatroomUser.equals(sender)) {
+//                    continue;
+//                }
                 try {
                     Session userSession = us.getUserSession(chatroomUser);
                     if (userSession != null) {

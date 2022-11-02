@@ -34,7 +34,6 @@ window.onload = function() {
     $(".chatroom").scrollTop($(".chatroom")[0].scrollHeight);
 
 
-    $("#btn-msg").click(() => sendMessage($("#message").val()));
     $(".emoji-btn").click(function() {
         var oldText = $("#txt-message").val();
         $("#txt-message").val(oldText + $(this).text());
@@ -81,14 +80,14 @@ function sendMsg(msg) {
         $.post("/chatroom/sendMessage", payload, function(data) {});
 
         // check if msg have url
-        let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-        if (msg.match(urlRegex)) {
-            let url = msg.match(urlRegex);
-            msg = msg.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
-        }
+        // let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+        // if (msg.match(urlRegex)) {
+        //     let url = msg.match(urlRegex);
+        //     msg = msg.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
+        // }
 
-        let msgHtml = convertMsgToHtml(-1, username, sendto, msg);
-        $(".chat-messages").append(msgHtml);
+        // let msgHtml = convertMsgToHtml(-1, username, sendto, msg);
+        // $(".chat-messages").append(msgHtml);
         $("#txt-message").val('');
         let chat = $('.chatroom');
         chat.scrollTop(chat.prop("scrollHeight"));
@@ -291,7 +290,14 @@ function handleWebsocketMessage(message) {
     else if (message.data == "updateUsers") console.log("updateUsers");
     else if (message.data == "updateMessages") console.log("updateMessages");
     else if (message.data == "updatePublicRooms") console.log("updatePublicRooms");
-    else console.log(message.data);
+    else {
+        let msg = JSON.parse(message.data);
+        if (msg.chatRoomName == currentChatroom) {
+            console.log(msg)
+            let msgHtml = convertMsgToHtml(msg.messageID, msg.sender, msg.receiver, msg.content, isAdmin);
+            $(msgHtml).appendTo($('#div-msg-list'));
+        }
+    }
 }
 
 function logout() {
@@ -349,6 +355,11 @@ function deleteMsg(id) {
 }
 
 function convertMsgToHtml(msgId, sender, receiver, content, isAdmin) {
+    let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    if (content.match(urlRegex)) {
+        let url = content.match(urlRegex);
+        content = msg.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
+    }
     let msg;
     receiver = receiver === username ? "You" : receiver;
     if (sender == username) {
