@@ -174,7 +174,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
                 msg = "user " + username + " leaves room voluntarily.";
                 break;
             case 1: // being baned
-                msg = "user " + username + " leaves room because of being baned.";
+                msg = "user " + username + " leaves room because of being banned.";
                 break;
             default:
                 break;
