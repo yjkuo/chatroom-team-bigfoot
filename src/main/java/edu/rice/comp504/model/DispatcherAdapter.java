@@ -200,7 +200,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     public void leaveAllRoom(String username) {
-        ArrayList<String> myChatRooms = us.getUsers(username).getMyChatRooms();
+        List<String> myChatRooms = new ArrayList<>(us.getUsers(username).getMyChatRooms());
         for (String room: myChatRooms) {
             this.leaveRoom(username, room, 0);
         }
