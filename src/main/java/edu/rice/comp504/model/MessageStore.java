@@ -37,16 +37,20 @@ public class MessageStore implements IMessageStore{
     @Override
     public void sendMessage(String type, String sender, String receiver, String content, String chatroomName) {
         AChatroom chatroom = cs.getChatRoom(chatroomName);
-        AMessage message = MessageFactory.makeFactory().makeMessage(chatroom.getCurrentMessageID(), chatroomName, content, sender, receiver, type);
-        chatroom.addMessage(message);
 
         if (content != null) {
             if (content.contains("hate speech")) {
                 AUser senderObject = us.getUsers(sender);
                 senderObject.setNumOfHateSpeech(senderObject.getNumOfHateSpeech() + 1);
-                String warningContent = "Your speech contains hateful speech. If you tried to send it 3 times, you will be removed from all rooms.";
-                sendMessage("", "System", sender, warningContent, chatroomName);
+                int currentHateSpeechNum = senderObject.getNumOfHateSpeech();
+                String warningContent = "Your speech contains hateful speech. If you tried to send it 3 times, you will be removed from all rooms." +
+                        " You have sent " + currentHateSpeechNum + " hateful speeches.";
+                if (currentHateSpeechNum < 3) {
+                    sendMessage("", "System", sender, warningContent, chatroomName);
+                }
             } else {
+                AMessage message = MessageFactory.makeFactory().makeMessage(chatroom.getCurrentMessageID(), chatroomName, content, sender, receiver, type);
+                chatroom.addMessage(message);
                 if (receiver.equals("Everyone")) {
                     ArrayList<String> chatroomUsers = chatroom.getUsers();
                     for (String chatroomUser: chatroomUsers) {

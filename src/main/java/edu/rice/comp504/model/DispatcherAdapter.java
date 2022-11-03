@@ -2,6 +2,7 @@ package edu.rice.comp504.model;
 
 import com.google.gson.Gson;
 import edu.rice.comp504.model.chatroom.AChatroom;
+import edu.rice.comp504.model.chatroom.NullChatroom;
 import edu.rice.comp504.model.message.AMessage;
 import edu.rice.comp504.model.message.MessageFactory;
 import edu.rice.comp504.model.user.AUser;
@@ -89,12 +90,16 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public AChatroom createChatRoom(String username, String chatroomName, String type, int size) {
-        AChatroom chatroom = cs.createChatRoom(chatroomName, type, username, size);
-        if (!chatroom.getRoomName().equals("")) {
-            us.addChatRoomToList(username, chatroomName);
-            us.promptUsersToUpdatePublicRooms();
+        if (us.getUsers(username).getStatus() == 2) {
+            return new NullChatroom();
+        } else {
+            AChatroom chatroom = cs.createChatRoom(chatroomName, type, username, size);
+            if (!chatroom.getRoomName().equals("")) {
+                us.addChatRoomToList(username, chatroomName);
+                us.promptUsersToUpdatePublicRooms();
+            }
+            return chatroom;
         }
-        return chatroom;
     }
 
     @Override
@@ -124,7 +129,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
 
     @Override
     public ArrayList<String> getAllPublicChatRooms(String username) {
-        return cs.getAllPublicChatRooms(username, us.getUsers(username).getBannedRooms());
+        return cs.getAllPublicChatRooms(username, us.getUsers(username).getStatus(), us.getUsers(username).getBannedRooms());
     }
 
     @Override
@@ -195,7 +200,8 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     }
 
     public void leaveAllRoom(String username) {
-        for (String room: us.getUsers(username).getMyChatRooms()) {
+        ArrayList<String> myChatRooms = us.getUsers(username).getMyChatRooms();
+        for (String room: myChatRooms) {
             this.leaveRoom(username, room, 0);
         }
     }

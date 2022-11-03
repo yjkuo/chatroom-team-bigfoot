@@ -29,7 +29,7 @@ public interface IChatroomStore {
      * Get all public chat rooms on the server.
      * @return list of all public chatrooms.
      */
-    ArrayList<String> getAllPublicChatRooms(String username, ArrayList<String> bannedRooms);
+    ArrayList<String> getAllPublicChatRooms(String username, int status, ArrayList<String> bannedRooms);
 
     /**
      * Create the chatroom with specific name and size.

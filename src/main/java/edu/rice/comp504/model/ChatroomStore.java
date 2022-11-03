@@ -42,19 +42,23 @@ public class ChatroomStore implements IChatroomStore{
     }
 
     @Override
-    public ArrayList<String> getAllPublicChatRooms(String username, ArrayList<String> bannedRooms) {
+    public ArrayList<String> getAllPublicChatRooms(String username, int status, ArrayList<String> bannedRooms) {
         ArrayList<String> publicChatrooms = new ArrayList<>();
-        for (Map.Entry<String, AChatroom> entry : chatroomList.entrySet()) {
-            AChatroom chatroom = entry.getValue();
-            boolean userAlreadyJoined = false;
-            for (String user: chatroom.getUsers()) {
-                if (Objects.equals(user, username)) {
-                    userAlreadyJoined = true;
-                    break;
+        if (status == 2) {
+            return publicChatrooms;
+        } else {
+            for (Map.Entry<String, AChatroom> entry : chatroomList.entrySet()) {
+                AChatroom chatroom = entry.getValue();
+                boolean userAlreadyJoined = false;
+                for (String user : chatroom.getUsers()) {
+                    if (Objects.equals(user, username)) {
+                        userAlreadyJoined = true;
+                        break;
+                    }
                 }
-            }
-            if (chatroom.getType().equals("public") && !userAlreadyJoined && !bannedRooms.contains(chatroom.getRoomName())) {
-                publicChatrooms.add(chatroom.getRoomName());
+                if (chatroom.getType().equals("public") && !userAlreadyJoined && !bannedRooms.contains(chatroom.getRoomName())) {
+                    publicChatrooms.add(chatroom.getRoomName());
+                }
             }
         }
         return publicChatrooms;
