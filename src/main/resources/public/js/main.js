@@ -194,6 +194,7 @@ function updateUserList() {
 }
 
 function openChatroom(chatroomName) {
+    console.log("opening chatroom...")
     let payload = {
         username: username,
         chatroomName: chatroomName,
@@ -376,7 +377,7 @@ function editMsg(id, element) {
         let content = $("#in-edit").val();
         let spanHtml = `<span>${content}</span>`;
         let payload = {
-            id: id,
+            id: editMsgID,
             chatroomName: currentChatroom,
             content: content
         }
