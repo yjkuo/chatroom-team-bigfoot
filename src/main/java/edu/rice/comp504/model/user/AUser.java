@@ -164,6 +164,8 @@ public abstract class AUser {
         if (numOfHateSpeech == 3) {
             DispatcherAdapter.makeDispatcher().banAll(this.username);
             this.setStatus(2);
+            this.myChatRooms.clear();
+            this.invitedRooms.clear();
         }
     }
 

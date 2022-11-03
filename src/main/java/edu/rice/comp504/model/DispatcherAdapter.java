@@ -216,6 +216,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         for (String chatroom: cs.getAllChatrooms().keySet()) {
             userToBeBanned.addBannedRooms(chatroom);
         }
+        ms.promptUserTheyArePermanentlyBanned(username);
     }
     
     public void reportUser(String username, String chatroomName) {

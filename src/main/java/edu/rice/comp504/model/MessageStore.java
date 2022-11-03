@@ -111,6 +111,17 @@ public class MessageStore implements IMessageStore{
         }
     }
 
+    public void promptUserTheyArePermanentlyBanned(String user) {
+        try {
+            Session userSession = us.getUserSession(user);
+            if (userSession != null) {
+                userSession.getRemote().sendString("Restricted");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void editMessage(int messageID, String chatroomName, String content) {
         AChatroom chatroom = cs.getChatRoom(chatroomName);
