@@ -425,12 +425,12 @@ function leaveChatRoom(roomName) {
 }
 
 function convertMsgToHtml(msgId, sender, receiver, content, isAdmin) {
+    let msg;
     let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
     if (content.match(urlRegex)) {
         let url = content.match(urlRegex);
         content = content.replace(url[0], "<a href=\"" + url[0] + "\" class=\"link-primary\">" + url[0] + "</a>");
     }
-    let msg;
     receiver = receiver === username ? "You" : receiver;
     if (sender == username) {
         msg = rightMsgHtml(receiver, content, msgId);
