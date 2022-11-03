@@ -16,6 +16,7 @@ let isAdmin = false;
  */
 window.onload = function() {
     if (!username) window.location.href = "/";
+    $('#div-right-menu').prepend(`<div class="row text-center fw-bold"><h2>${username}</h2></div>`);
     $(".chat-element").hide();
     let msg = {
         "type" : "initialize",
@@ -130,7 +131,9 @@ function loadMessages() {
             let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
         });
-        $('.chatroom').scrollTop($('.chatroom').scrollHeight);
+        let chat = $('.chatroom');
+        chat.scrollTop(chat.prop("scrollHeight"));
+
     });
 }
 
@@ -391,19 +394,12 @@ function deleteMsg(id) {
 }
 
 function leaveAllChatRooms() {
-    // let payload = {
-    //     username: username
-    // }
-    // $.get("/chatroom/getChatroomList", payload, function(data) {
-    //     $('#div-chatrooms-list').empty();
-    //     let chatroomNames = JSON.parse(data);
-    //     chatroomNames.forEach(item => {
-    //         $.post("/chatroom/leaveChatroom", {
-    //             username: username,
-    //             chatroomName: item
-    //         });
-    //     });
-    // });
+    let payload = {
+        username: username
+    }
+    $.post("/chatroom/leaveAllChatroom", payload, function(data) {
+        loadChatRoomList();
+    });
 }
 
 function leaveChatRoom(roomName) {

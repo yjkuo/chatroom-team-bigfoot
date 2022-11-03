@@ -64,7 +64,11 @@ public class MessageStore implements IMessageStore{
                     }
                 } else {
                     try {
-                        Session userSession = us.getUserSession(receiver);
+                        Session userSession = us.getUserSession(sender);
+                        if (userSession != null) {
+                            userSession.getRemote().sendString(gson.toJson(message));
+                        }
+                        userSession = us.getUserSession(receiver);
                         if (userSession != null) {
                             userSession.getRemote().sendString(gson.toJson(message));
                         }
