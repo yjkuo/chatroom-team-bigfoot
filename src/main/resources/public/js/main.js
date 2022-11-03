@@ -10,12 +10,27 @@ let username = localStorage.getItem('username');
 let currentChatroom = "";
 let editMsgID = 0;
 let isAdmin = false;
+let timerID = 0;
 
+function keepAlive() {
+    let timeout = 15000;
+    if (webSocket.readyState == webSocket.OPEN) {
+        webSocket.send('');
+    }
+    timerID = setTimeout(keepAlive, timeout);
+}
+
+function cancelKeepAlive() {
+    if (timerID) {
+        clearTimeout(timerID);
+    }
+}
 /**
  * Entry point into chat room
  */
 window.onload = function() {
     if (!username) window.location.href = "/";
+    keepAlive();
     $('#div-right-menu').prepend(`<div class="row text-center fw-bold"><h2>${username}</h2></div>`);
     $(".chat-element").hide();
     let msg = {
@@ -344,6 +359,7 @@ function handleWebsocketMessage(message) {
 
 function logout() {
     localStorage.removeItem('username');
+    cancelKeepAlive();
     window.location.href = "/";
 }
 
