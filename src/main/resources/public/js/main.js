@@ -50,13 +50,13 @@ window.onload = function() {
     })
 
     $(document).on('click', '.delete-btn', function(){
-        let id = $(this).closest(".container").attr("id").slice(-1);
+        let id = $(this).closest(".container").attr("id").split('-')[1];
         $(this).closest(".container").remove();
         deleteMsg(id);
     });
 
     $(document).on('click', '.edit-btn', function(){
-        let id = $(this).closest(".container").attr("id").slice(-1);
+        let id = $(this).closest(".container").attr("id").split('-')[1];
         editMsg(id, $(this));
     });
 
