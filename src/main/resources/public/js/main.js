@@ -90,6 +90,7 @@ function sendMsg(msg) {
 
         // let msgHtml = convertMsgToHtml(-1, username, sendto, msg);
         // $(".chat-messages").append(msgHtml);
+
         // $("#txt-message").val('');
         // let chat = $('.chatroom');
         // chat.scrollTop(chat.prop("scrollHeight"));
@@ -128,8 +129,8 @@ function loadMessages() {
         data.forEach(message => {
             let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
-            $('.chatroom').scrollTop($('.chatroom').scrollHeight);
         });
+        $('.chatroom').scrollTop($('.chatroom').scrollHeight);
     });
 }
 
@@ -403,6 +404,7 @@ function leaveChatRoom(roomName) {
         username: username,
         chatroomName: currentChatroom
     }
+
     $.post("/chatroom/leaveChatroom", payload, function (data) {
         currentChatroom = "";
         $(".chat-element").hide();
