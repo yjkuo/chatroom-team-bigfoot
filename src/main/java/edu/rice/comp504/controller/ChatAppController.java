@@ -85,9 +85,8 @@ public class ChatAppController {
             return gson.toJson(da.inviteToJoin(request.queryParams("sender"), request.queryParams("receiver"), request.queryParams("chatroomName")));
         });
 
-        get("/chatroom/userList", (request, response) -> {
-            da.getAllUsers("chatroomName");
-            return gson.toJson("user list");
+        post("/chatroom/userList", (request, response) -> {
+            return gson.toJson(da.getAllUsers(request.queryParams("chatroomName")));
         });
 
         get("/chatroom/getAdmin", (request, response) -> {

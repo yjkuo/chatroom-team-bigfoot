@@ -95,6 +95,10 @@ public class ChatroomStore implements IChatroomStore{
     public void removeUserFromChatroom(String chatroomName, String username) {
         AChatroom roomToRemove = this.chatroomList.get(chatroomName);
         roomToRemove.removeUser(username);
+        if (roomToRemove.getAdmin().equals(username) && roomToRemove.getNumberOfUsers() > 0) {
+            String newAdmin = roomToRemove.getUsers().get(0);
+            roomToRemove.setAdmin(newAdmin);
+        }
     }
 
     @Override

@@ -181,6 +181,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         }
         cs.removeUserFromChatroom(chatroomName, username);
         us.removeChatRoomFromList(username, chatroomName);
+
         if (cs.getChatRoom(chatroomName).getNumberOfUsers() == 0) {
             cs.removeChatRoom(chatroomName);
         } else {
@@ -206,11 +207,13 @@ public class DispatcherAdapter implements IDispatcherAdapter {
                 if (Objects.equals(roomname, chatroom.getValue().getRoomName())) {
                     String warningContent = "You have been banned from all rooms.";
                     ms.sendMessage("", "System", username, warningContent, chatroom.getKey());
-                    userToBeBanned.addBannedRooms(roomname);
                     this.leaveRoom(username, roomname, 1);
                     break;
                 }
             }
+        }
+        for (String chatroom: cs.getAllChatrooms().keySet()) {
+            userToBeBanned.addBannedRooms(chatroom);
         }
     }
     
