@@ -398,6 +398,9 @@ function leaveAllChatRooms() {
         username: username
     }
     $.post("/chatroom/leaveAllChatroom", payload, function(data) {
+        currentChatroom = "";
+        $(".chat-element").hide();
+        loadPublicRoomList();
         loadChatRoomList();
     });
 }
