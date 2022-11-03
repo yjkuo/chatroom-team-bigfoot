@@ -99,23 +99,23 @@ public class MessageStore implements IMessageStore{
         sendStringToAllInChatroom("updateMessages", chatroomName);
     }
 
+    public void promptUserTheyAreBanned(String user, String chatroomName) {
+        String string = String.format("ban&%s", chatroomName);
+        try {
+            Session userSession = us.getUserSession(user);
+            if (userSession != null) {
+                userSession.getRemote().sendString(string);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void editMessage(int messageID, String chatroomName, String content) {
         AChatroom chatroom = cs.getChatRoom(chatroomName);
         chatroom.editMessage(messageID, content);
         promptUsersToUpdateMessages(chatroomName);
-//        ArrayList<String> chatroomUsers = chatroom.getUsers();
-//
-//        for (String chatroomUser: chatroomUsers) {
-//            try {
-//                Session userSession = us.getUserSession(chatroomUser);
-//                if (userSession != null) {
-//                    userSession.getRemote().sendString(gson.toJson("edit&" + String.valueOf(messageID) + "&" + content));
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     @Override
@@ -123,17 +123,5 @@ public class MessageStore implements IMessageStore{
         AChatroom chatroom = cs.getChatRoom(chatroomName);
         chatroom.deleteMessage(messageID);
         promptUsersToUpdateMessages(chatroomName);
-//        ArrayList<String> chatroomUsers = chatroom.getUsers();
-//
-//        for (String chatroomUser: chatroomUsers) {
-//            try {
-//                Session userSession = us.getUserSession(chatroomUser);
-//                if (userSession != null) {
-//                    userSession.getRemote().sendString(gson.toJson("delete&" + String.valueOf(messageID)));
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 }

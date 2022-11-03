@@ -312,6 +312,13 @@ function handleWebsocketMessage(message) {
     else if (message.data == "updateMessages") loadMessages();
     else if (message.data == "updatePublicRooms") loadPublicRoomList();
     else if (message.data == "connectNow") console.log("connectNow");
+    else if (message.data.includes("ban")) {
+        let msg = message.data.split("&");
+        if (currentChatroom == msg[1]) {
+            currentChatroom = "";
+        }
+        loadChatRoomList();
+    }
     else {
         let msg = JSON.parse(message.data);
         if (msg.chatRoomName == currentChatroom) {

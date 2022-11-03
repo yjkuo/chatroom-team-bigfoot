@@ -131,6 +131,7 @@ public class DispatcherAdapter implements IDispatcherAdapter {
     public boolean banUser(String username, String chatroomName) {
         this.leaveRoom(username, chatroomName, 1);
         us.getUsers(username).addBannedRooms(chatroomName);
+        ms.promptUserTheyAreBanned(username, chatroomName);
         return true;
     }
 
