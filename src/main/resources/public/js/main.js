@@ -75,7 +75,11 @@ function sendMsg(msg) {
             content: msg,
             receiver: sendto
         };
-        $.post("/chatroom/sendMessage", payload, function(data) {});
+        $.post("/chatroom/sendMessage", payload, function(data) {
+            $("#txt-message").val('');
+            let chat = $('.chatroom');
+            chat.scrollTop(chat.prop("scrollHeight"));
+        });
 
         // check if msg have url
         // let urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
@@ -86,7 +90,10 @@ function sendMsg(msg) {
 
         // let msgHtml = convertMsgToHtml(-1, username, sendto, msg);
         // $(".chat-messages").append(msgHtml);
-        $("#txt-message").val('');
+
+        // $("#txt-message").val('');
+        // let chat = $('.chatroom');
+        // chat.scrollTop(chat.prop("scrollHeight"));
     }
 }
 
@@ -141,9 +148,13 @@ function loadUserList() {
 function loadUserListFromChatroomData(chatroomData) {
     let data = chatroomData;
     $('#div-user-list').empty();
+    let $send_to_list = $('#send-to-list');
+    $send_to_list.empty();
+    $send_to_list.append('<option selected>Everyone</option>');
     data.users.forEach(user => {
         var userHtml = userListElement(username, user, data.admin);
         $(userHtml).appendTo($('#div-user-list'));
+        if (user !== username) $send_to_list.append(`<option>${user}</option>`);
     })
 
     $(".btn-ban").click(function() {
@@ -180,12 +191,12 @@ function updateUserList() {
 }
 
 function openChatroom(chatroomName) {
-    $(".chat-element").show();
     let payload = {
         username: username,
         chatroomName: chatroomName,
     };
     $.post("/chatroom/connectToChatroom", payload, function(data) {
+        $(".chat-element").show();
         data = JSON.parse(data);
         if (data.type === "public") {
             $('#div-invite-box').hide();
@@ -295,26 +306,6 @@ function loadInvitedToList() {
     });
 }
 
-function joinChatroom(chatroomName) {
-    let payload = {
-        username: username,
-        chatroomName: chatroomName,
-    };
-    $.post("/chatroom/joinChatroom", payload, function(data) {
-        data = JSON.parse(data);
-        if (data.roomName === "") {
-            $('#alert-public-room-full').show();
-        }
-        else {
-            loadPublicRoomList();
-            loadChatRoomList();
-            $('#alert-public-room-full').hide();
-        }
-    });
-}
-
-
-
 function handleWebsocketMessage(message) {
     console.log(message.data);
     if (message.data == "updateInvites") loadInvitedToList();
@@ -406,14 +397,13 @@ function leaveChatRoom(roomName) {
         username: username,
         chatroomName: currentChatroom
     }
-    $.post("/chatroom/leaveChatroom", payload, function(data) {
+
+    $.post("/chatroom/leaveChatroom", payload, function (data) {
         currentChatroom = "";
+        $(".chat-element").hide();
         loadPublicRoomList();
         loadChatRoomList();
     });
-
-
-
 }
 
 function convertMsgToHtml(msgId, sender, receiver, content, isAdmin) {
