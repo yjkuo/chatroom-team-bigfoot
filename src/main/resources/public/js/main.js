@@ -133,7 +133,7 @@ function loadMessages() {
         });
         // let chat = $('.chatroom');
         // chat.scrollTop(chat.prop("scrollHeight"));
-        $('.chatroom').animate({scrollTop: $('.chatroom').prop("scrollHeight")}, 10);
+        // $('.chatroom').animate({scrollTop: $('.chatroom').prop("scrollHeight")}, 10);
     });
 }
 
@@ -213,6 +213,7 @@ function openChatroom(chatroomName) {
         loadUserListFromChatroomData(data);
 
         loadMessages();
+        $('.chatroom').animate({scrollTop: $('.chatroom').prop("scrollHeight")}, 10);
         loadChatRoomList();
     });
 }
@@ -379,6 +380,7 @@ function editMsg(id, element) {
             chatroomName: currentChatroom,
             content: content
         }
+        console.log(payload);
         $.post("/chatroom/editMessage", payload);
         $("#in-edit").replaceWith(spanHtml);
         editMsgID = 0;
@@ -391,6 +393,7 @@ function deleteMsg(id) {
         id: id,
         chatroomName: currentChatroom
     }
+    console.log(payload);
     $.post("/chatroom/deleteMessage", payload);
 }
 

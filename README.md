@@ -5,4 +5,4 @@
 * Anand Gadsing (dev)
 * Daniel Kuo (dev)
 
-Heroku app: https://chatapp-api-team-bigfoot.herokuapp.com/
+Heroku app: https://chatapp-final-team-bigfoot.herokuapp.com/
