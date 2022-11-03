@@ -107,6 +107,9 @@ public class MessageStore implements IMessageStore{
         sendStringToAllInChatroom("updateMessages", chatroomName);
     }
 
+    /**
+     * Tell users frontend that they are banned from the chatroom.
+     */
     public void promptUserTheyAreBanned(String user, String chatroomName) {
         String string = String.format("ban&%s", chatroomName);
         try {
@@ -119,6 +122,9 @@ public class MessageStore implements IMessageStore{
         }
     }
 
+    /**
+     * Tell users frontend that they have been permanently banned.
+     */
     public void promptUserTheyArePermanentlyBanned(String user) {
         try {
             Session userSession = us.getUserSession(user);

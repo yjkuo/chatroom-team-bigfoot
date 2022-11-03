@@ -131,9 +131,9 @@ function loadMessages() {
             let msgHtml = convertMsgToHtml(message.messageID, message.sender, message.receiver, message.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
         });
-        let chat = $('.chatroom');
-        chat.scrollTop(chat.prop("scrollHeight"));
-
+        // let chat = $('.chatroom');
+        // chat.scrollTop(chat.prop("scrollHeight"));
+        $('.chatroom').animate({scrollTop: $('.chatroom').prop("scrollHeight")}, 10);
     });
 }
 
@@ -335,6 +335,7 @@ function handleWebsocketMessage(message) {
         if (msg.chatRoomName == currentChatroom) {
             let msgHtml = convertMsgToHtml(msg.messageID, msg.sender, msg.receiver, msg.content, isAdmin);
             $(msgHtml).appendTo($('#div-msg-list'));
+            $('.chatroom').animate({scrollTop: $('.chatroom').prop("scrollHeight")}, 10);
         }
     }
 }

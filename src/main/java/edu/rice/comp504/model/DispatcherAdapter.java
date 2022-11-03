@@ -199,6 +199,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         }
     }
 
+    /**
+     * Leave all the rooms for the user.
+     */
     public void leaveAllRoom(String username) {
         List<String> myChatRooms = new ArrayList<>(us.getUsers(username).getMyChatRooms());
         for (String room: myChatRooms) {
@@ -206,6 +209,9 @@ public class DispatcherAdapter implements IDispatcherAdapter {
         }
     }
 
+    /**
+     * Permanently ban a user.
+     */
     public void banAll(String username) {
         ArrayList<String> myChatRooms = us.getChatRoomForUser(username);
         AUser userToBeBanned = us.getUsers(username);
