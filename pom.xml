@@ -102,7 +102,7 @@
                 <configuration>
                     <jdkVersion>${jdk.version}</jdkVersion>
                     <!-- Use your own application name -->
-                    <appName>chatapp-final-team-bigfoot</appName>
+                    <appName>chatapp-team-bigfoot</appName>
                     <processTypes>
                         <!-- Tell Heroku how to launch your application -->
                         <!-- You might have to remove the ./ in front   -->
